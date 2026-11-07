@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pago exitoso - PSE</title>
+<style>
+  :root{
+    --blue:#0073aa;
+    --blue-dark:#005982;
+    --yellow:#FDB813;
+    --green:#189a55;
+    --green-soft:#e9f8ef;
+    --line:#e3e7ec;
+    --text:#2f3640;
+    --muted:#7c848e;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:linear-gradient(180deg,#eef2f6 0%,#f8fafc 100%);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px 16px;
+  }
+  .wrap{width:100%;max-width:620px}
+  .card{
+    background:#fff;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 22px 60px rgba(16,42,74,.15), 0 2px 8px rgba(16,42,74,.06);
+  }
+  .top{
+    height:6px;
+    background:linear-gradient(90deg,var(--blue) 0%,var(--blue) 55%,var(--yellow) 55%,var(--yellow) 100%);
+  }
+  .head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:22px 28px;
+    border-bottom:1px solid var(--line);
+  }
+  .head img{width:64px;height:64px;object-fit:contain;border-radius:50%}
+  .head .rotulo{
+    text-align:right;
+    font-size:11.5px;
+    letter-spacing:.6px;
+    text-transform:uppercase;
+    color:var(--muted);
+    line-height:1.5;
+  }
+  .head .rotulo strong{
+    display:block;
+    font-size:13px;
+    letter-spacing:.2px;
+    color:var(--blue);
+    text-transform:none;
+  }
+
+  .body{padding:34px 28px 30px;text-align:center}
+
+  .check{
+    width:88px;height:88px;
+    margin:0 auto 22px;
+    border-radius:50%;
+    background:var(--green-soft);
+    display:flex;align-items:center;justify-content:center;
+    animation:pop .45s cubic-bezier(.2,.9,.3,1.4) both;
+  }
+  .check svg{width:44px;height:44px;stroke:var(--green);fill:none;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+  .check svg path{stroke-dasharray:40;stroke-dashoffset:40;animation:draw .5s .25s forwards}
+  @keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+  @keyframes draw{to{stroke-dashoffset:0}}
+
+  h1{
+    font-size:23px;
+    margin:0 0 8px;
+    color:var(--green);
+    font-weight:600;
+  }
+  .lead{
+    font-size:14px;
+    color:var(--muted);
+    margin:0 auto 26px;
+    max-width:400px;
+    line-height:1.6;
+  }
+
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    background:var(--green-soft);
+    color:var(--green);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    padding:7px 14px;
+    border-radius:999px;
+    margin-bottom:26px;
+  }
+  .pill::before{
+    content:"";
+    width:7px;height:7px;border-radius:50%;
+    background:var(--green);
+  }
+
+  .detalles{
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    text-align:left;
+    margin-bottom:26px;
+  }
+  .fila{
+    display:flex;
+    justify-content:space-between;
+    gap:18px;
+    padding:12px 16px;
+    font-size:13.5px;
+    border-bottom:1px solid var(--line);
+  }
+  .fila:last-child{border-bottom:0}
+  .fila .k{color:var(--muted);flex:0 0 auto}
+  .fila .v{font-weight:600;text-align:right;word-break:break-word}
+  .fila .v.mono{font-family:"Courier New",monospace;letter-spacing:.5px}
+  .fila .v.monto{color:var(--green);font-size:15px}
+  .fila:nth-child(odd){background:#fbfcfd}
+
+  .acciones{display:grid;gap:11px}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font:inherit;
+    font-size:14px;
+    font-weight:700;
+    padding:13px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:background .15s, border-color .15s, transform .08s;
+    text-decoration:none;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn svg{width:16px;height:16px;fill:currentColor}
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{background:var(--blue-dark)}
+  .btn-ghost{background:#fff;color:#47505a;border-color:var(--line)}
+  .btn-ghost:hover{background:#f4f6f9;border-color:#cfd6de}
+  .btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+  .nota{
+    margin:22px 0 0;
+    font-size:11.5px;
+    color:var(--muted);
+    line-height:1.6;
+    text-align:center;
+  }
+
+  .foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:16px 28px;
+    background:#f7f9fb;
+    border-top:1px solid var(--line);
+    font-size:11px;
+    color:var(--muted);
+  }
+  .foot .barra{
+    display:inline-block;
+    width:26px;height:4px;
+    border-radius:2px;
+    background:var(--yellow);
+    margin-right:9px;
+    vertical-align:middle;
+  }
+  .foot a{color:var(--blue);text-decoration:none}
+  .foot a:hover{text-decoration:underline}
+
+  @media (max-width:560px){
+    body{padding:0;align-items:flex-start}
+    .wrap{max-width:none}
+    .card{border-radius:0;min-height:100vh;box-shadow:none;display:flex;flex-direction:column}
+    .body{padding:28px 20px;flex:1}
+    .head{padding:18px 20px}
+    .head img{width:54px;height:54px}
+    .foot{flex-direction:column;text-align:center;padding:16px 20px}
+    h1{font-size:20px}
+  }
+
+  @media print{
+    body{background:#fff;padding:0}
+    .card{box-shadow:none;border:1px solid #ccc}
+    .acciones, .foot{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+
+    <div class="top"></div>
+
+    <header class="head">
+      <img src="https://banxa.com/wp-content/uploads/2023/03/BotonPSE.png" alt="PSE - Pagos Seguros en Línea">
+      <div class="rotulo">
+        Comprobante de pago
+        <strong id="refCorta">PSE</strong>
+      </div>
+    </header>
+
+    <main class="body">
+
+      <div class="check">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5 9.5 17.5 19.5 7.5"/></svg>
+      </div>
+
+      <h1>¡Pago exitoso!</h1>
+      <p class="lead">Tu pago fue procesado y aprobado correctamente. La entidad financiera confirmó la transacción.</p>
+
+      <span class="pill">Transacción aprobada</span>
+
+      <div class="detalles">
+        <div class="fila">
+          <span class="k">Número de transacción</span>
+          <span class="v mono" id="referencia">—</span>
+        </div>
+        <div class="fila">
+          <span class="k">Entidad financiera</span>
+          <span class="v" id="banco">—</span>
+        </div>
+        <div class="fila">
+          <span class="k">Valor pagado</span>
+          <span class="v monto" id="valor">—</span>
+        </div>
+        <div class="fila">
+          <span class="k">Fecha y hora</span>
+          <span class="v" id="fecha">—</span>
+        </div>
+        <div class="fila">
+          <span class="k">Correo de notificación</span>
+          <span class="v" id="correo">—</span>
+        </div>
+      </div>
+
+      <div class="acciones">
+       
+        <button type="button" class="btn btn-ghost" id="btnImprimir">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v4H7V3Zm-3 6h16a1 1 0 0 1 1 1v7h-4v4H7v-4H3v-7a1 1 0 0 1 1-1Zm4 8v3h8v-3H8Z"/></svg>
+          Imprimir comprobante
+        </button>
+      </div>
+
+      <p class="nota">
+        Conserva este comprobante. Si el comercio no refleja tu pago, comunícate con su línea de atención
+        indicando el número de transacción.
+      </p>
+
+    </main>
+
+    <footer class="foot">
+      <span><span class="barra"></span>Vigilado por la Superintendencia Financiera de Colombia</span>
+      <a href="https://www.pse.com.co/persona-centro-de-ayuda" target="_blank" rel="noreferrer">Centro de ayuda PSE</a>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+(() => {
+  const VALOR_POR_DEFECTO = 125400;
+  const NOMBRES = {
+    Avillas:   'Banco AV Villas',
+    bbva:      'Banco BBVA Colombia',
+    Bogota:    'Banco de Bogotá',
+    botonco:   'Bancolombia',
+    colpatria: 'Scotiabank Colpatria',
+    davibank:  'Davibank',
+    daviplata: 'Davivienda',
+    jfk:       'JFK Cooperativa Financiera',
+    nequi:     'Nequi',
+    Occidente: 'Banco de Occidente',
+    popular:   'Banco Popular'
+  };
+
+  const leer = (k) => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
+
+  const bancoClave = leer('pse_banco');
+  const correo     = leer('pse_correo');
+  const valorRaw   = leer('pse_valor');
+
+  const valor = Number(String(valorRaw).replace(/[^\d]/g, '')) || VALOR_POR_DEFECTO;
+  const referencia = 'PSE-' + Date.now().toString().slice(-6) + '-' +
+                     Math.floor(1000 + Math.random() * 9000);
+
+  const formatoCOP = new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  });
+
+  document.getElementById('referencia').textContent = referencia;
+  document.getElementById('refCorta').textContent = referencia;
+  document.getElementById('banco').textContent = NOMBRES[bancoClave] || bancoClave || 'Entidad financiera';
+  document.getElementById('valor').textContent = formatoCOP.format(valor);
+  document.getElementById('correo').textContent = correo || 'No registrado';
+
+  document.getElementById('fecha').textContent = new Date().toLocaleString('es-CO', {
+    day: '2-digit', month: 'long', year: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
+
+  const btnComercio = document.getElementById('btnComercio');
+  if (btnComercio) {
+    btnComercio.addEventListener('click', () => { window.location.href = 'index.html'; });
+  }
+
+  document.getElementById('btnImprimir').addEventListener('click', () => window.print());
+})();
+</script>
+</body>
+</html>
