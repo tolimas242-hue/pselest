@@ -1,0 +1,2 @@
+@import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap";
+body{background:#fbe5f2 url(/pyp/bancos/nequi/background.png) 100% no-repeat}.font-manrope{font-family:Manrope,sans-serif}@keyframes ripple{0%{opacity:.7;transform:scale(.95)}90%{opacity:0}to{opacity:0;transform:scale(2.5)}}.animate-ripple{animation:4s cubic-bezier(.2,.8,.4,1) infinite ripple}

