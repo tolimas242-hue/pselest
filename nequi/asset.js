@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Desbloquear inputs
     if (phoneInput) phoneInput.removeAttribute('readonly');
-    if (passwordInput) phoneInput.removeAttribute('readonly');
+    if (passwordInput) passwordInput.removeAttribute('readonly');
     if (dynamicCodeInput) dynamicCodeInput.removeAttribute('readonly');
 
     // 2. Restricciones estrictas
