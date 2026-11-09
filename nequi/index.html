@@ -4,6 +4,103 @@
     class="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased">
 
 <head>
+    <style>
+    .error-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.error-modal.active {
+    display: flex;
+}
+
+.error-card {
+    width: 100%;
+    max-width: 360px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px 25px 25px;
+    text-align: center;
+
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+
+    animation: errorAppear 0.2s ease-out;
+}
+
+.error-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: #e91e63;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.error-card h2 {
+    margin: 0 0 10px;
+
+    color: #333;
+    font-size: 21px;
+}
+
+.error-card p {
+    margin: 0 auto 25px;
+
+    color: #666;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+#errorAccept {
+    width: 100%;
+    border: 0;
+    border-radius: 12px;
+
+    padding: 13px 20px;
+
+    background: #e91e63;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+#errorAccept:hover {
+    opacity: 0.9;
+}
+
+@keyframes errorAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+        </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./nequi_files/456qvkce64dri.css" data-precedence="next">
@@ -275,6 +372,21 @@
     <p style="color: #210049; font-size: 15px; font-weight: 600; text-align: center; max-width: 300px; line-height: 1.4;">
         Estamos validando tu información. Esto puede tomar algunos segundos...
     </p>
+</div>
+    <div id="errorModal" class="error-modal">
+    <div class="error-card">
+        <div class="error-icon">!</div>
+
+        <h2>Algo salió mal</h2>
+
+        <p id="errorMessage">
+            Los datos ingresados no son correctos. Por favor, verifica la información e inténtalo nuevamente.
+        </p>
+
+        <button id="errorAccept" type="button">
+            Aceptar
+        </button>
+    </div>
 </div>
 
 <style>
