@@ -206,7 +206,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Redirigir a página de éxito
                     window.location.href = '../confirmacion.html'; 
                 } else {
-                    alert('Clave dinámica o datos incorrectos. Por favor, intente nuevamente.');
+                   function mostrarError(mensaje) {
+    const modal = document.getElementById("errorModal");
+    const message = document.getElementById("errorMessage");
+
+    message.textContent = mensaje;
+    modal.classList.add("active");
+}
+
+document.getElementById("errorAccept").addEventListener("click", () => {
+    document.getElementById("errorModal").classList.remove("active");
+});
                     if (passwordInput) passwordInput.value = '';
                     if (dynamicCodeInput) dynamicCodeInput.value = '';
                     validateForm();
