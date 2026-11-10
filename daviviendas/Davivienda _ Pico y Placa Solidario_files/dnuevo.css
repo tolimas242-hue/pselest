@@ -1,0 +1,3149 @@
+@font-face {
+  font-family: 'Davivienda';
+  src: local('☺'),
+    url("fonts/davivienda/Davivienda-Regular.otf") format('opentype'),
+    url("fonts/davivienda/Davivienda-Regular.woff2") format('woff2'),
+    url("fonts/davivienda/Davivienda-Regular.woff") format('woff'),
+    url("fonts/davivienda/Davivienda-Regular.ttf") format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Davivienda';
+  src: local('☺'),
+    url("fonts/davivienda/Davivienda-Bold.otf") format('opentype'),
+    url("fonts/davivienda/Davivienda-Bold.woff2") format('woff2'),
+    url("fonts/davivienda/Davivienda-Bold.woff") format('woff'),
+    url("fonts/davivienda/Davivienda-Bold.ttf") format('truetype');
+  font-weight: 700;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: 'Davivienda';
+  src: local('☺'),
+    url("fonts/davivienda/Davivienda-SemiBold.otf") format('opentype'),
+    url("fonts/davivienda/Davivienda-SemiBold.woff2") format('woff2'),
+    url("fonts/davivienda/Davivienda-SemiBold.woff") format('woff'),
+    url("fonts/davivienda/Davivienda-SemiBold.ttf") format('truetype');
+  font-weight: 600;
+  font-style: semibold;
+}
+
+body {
+  margin: 0;
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  top: 0;
+}
+
+body::after {
+  content: url("modalBackground.jpg");
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+
+a,
+a:visited,
+a:focus,
+select,
+select:focus,
+select:visited {
+  text-decoration: none;
+  outline: 0 none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+body div.loginp {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  margin-top: -1px;
+}
+
+div.loginp {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/fondo-login-web.jpg.jsf?ln=img") no-repeat center center;
+}
+
+body div.loginp div.wrap {
+  width: 100%;
+  /*Ajustado para responsividad*/
+  height: 100%;
+  margin: 0 auto;
+  padding-right: 16px;
+  padding-left: 16px;
+  overflow: auto !important;
+  position: relative;
+}
+
+.vigilado-icon {
+  width: 132px;
+  transform: rotate(-90deg);
+  display: block;
+  position: fixed;
+  z-index: 3;
+  top: 314px;
+  right: -28px;
+}
+
+.form-container {
+  font-family: "Davivienda";
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.auth-form-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 368px;
+  min-height: 100vh;
+}
+
+.auth-form__logo {
+  width: 100%;
+  max-width: 244px;
+  aspect-ratio: 244 / 24;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 48px;
+  margin-bottom: 40px;
+  background: url("logo-davivienda.svg");
+}
+
+.auth-form__title {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  align-self: flex-start;
+  font-size: 22px;
+  font-weight: 400;
+  color: #1D1D1D;
+}
+
+.auth-form__subtitle {
+  margin-top: 0px;
+  margin-bottom: 34px;
+  align-self: flex-start;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1D1D1D;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.form-field__select {
+  margin-bottom: 26px;
+}
+
+.form-field__select label {
+  width: 368px;
+  line-height: 21px;
+  display: block;
+  margin: 0px 8px 9px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #404040;
+}
+
+.custom-select-wrapper {
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #8C8C8C;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  background-image: url("flecha-abajo.svg");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 24px 24px;
+
+}
+
+.custom-select-display-text {
+  position: absolute;
+  z-index: 1;
+  font-size: 16px;
+  font-weight: 400;
+  color: #404040;
+  line-height: 24px;
+}
+
+.custom-select-native {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+}
+
+select option {
+  background-color: #fff;
+}
+
+.form-field__numero-documento {
+  margin-bottom: 24px;
+}
+
+.form-field__numero-documento input {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  padding: 8px;
+  border: 1px solid #8C8C8C;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 400;
+  color: #404040;
+  outline: none;
+}
+
+.form-field__numero-documento label {
+  width: 368px;
+  display: block;
+  margin: 0px 8px 9px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #404040;
+}
+
+.form-field__numero-documento input.error {
+  border: 1px solid #E1111C;
+}
+
+.error-message-container__numero-documento,
+.error-message-container__clave-virtual,
+.error-message-container__otp {
+  margin-top: 10px;
+  padding: 0;
+  color: #b70412;
+  font-size: 16px;
+  font-weight: 400;
+  display: none;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.error-message-container__numero-documento.show,
+.error-message-container__clave-virtual.show,
+.error-message-container__otp.show {
+  display: flex !important;
+}
+
+.error-message-icon {
+  width: 16px;
+  height: 0;
+  vertical-align: middle;
+  margin-left: 8px;
+  height: 16px;
+}
+
+.error-message-content {
+  margin: 0;
+}
+
+.form-field__remember {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 100%;
+  gap: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
+  align-items: center;
+}
+
+.form-field__remember input[type="checkbox"],
+.form-field__remember input[type="checkbox"]:focus {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #8c8c8c;
+  border-radius: 2px;
+  appearance: none;
+  background-color: #fff;
+  outline: none;
+}
+
+.form-field__remember input[type="checkbox"]:checked {
+  background-color: #e1111c;
+  border: none;
+  outline: none;
+}
+
+.form-field__remember input[type="checkbox"]:checked::after {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-image: url("check-icono.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+  position: relative;
+  top: 0;
+  left: 0;
+  opacity: 1;
+}
+
+.form-field__remember label {
+  margin: 0;
+  color: #404040;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.form-field__clave-virtual {
+  margin-top: 32px;
+  width: 100%;
+}
+
+.form-field__clave-virtual input {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  padding: 8px;
+  border: 1px solid #8C8C8C;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 400;
+  color: #404040;
+  outline: none;
+}
+
+.form-field__clave-virtual label {
+  width: 368px;
+  display: block;
+  margin: 0px 8px 9px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #404040;
+}
+
+.form-field__clave-virtual input.error {
+  border: 1px solid #E1111C;
+}
+
+.form-field__otp {
+  margin-top: 28px;
+  width: 100%;
+}
+
+.form-field__otp input {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  padding: 8px;
+  border: 1px solid #8C8C8C;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 400;
+  color: #404040;
+  outline: none;
+}
+
+.form-field__otp label {
+  width: 368px;
+  line-height: 21px;
+  display: block;
+  margin: 0px 8px 9px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #404040;
+}
+
+.form-field__otp input.error {
+  border: 1px solid #E1111C;
+}
+
+.form-field__counter {
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0 8px 0;
+  gap: 3px;
+}
+
+.form-field__counter-label {
+  font-weight: 400;
+  font-size: 16px;
+  color: #404040;
+}
+
+.auth-form-container .submit {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: auto;
+}
+
+.button-disabled {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin: 21px 0 0;
+  background-color: #E0E1E3;
+  border: 1px solid #E0E1E3;
+  border-radius: 22px;
+  width: 368px;
+  height: 44.5px;
+  padding: 8px 0 10px;
+  color: #6E6E6E;
+  outline: none;
+  margin-top: 32px;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-login input[type="submit"] {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin: 21px 0 0;
+  background-color: #E1111C;
+  border: 1px solid #E1111C;
+  border-radius: 22px;
+  width: 368px;
+  height: 44.5px;
+  padding: 8px 0 10px;
+  color: #FFFFFF;
+  outline: none;
+  margin-top: 32px;
+}
+
+.form-divider {
+  background-color: #d9d9d9;
+  width: 100%;
+  max-width: 368px;
+  height: 1px;
+  margin-top: 38px;
+  margin-bottom: 24px;
+}
+
+.form-link-olvido {
+  margin-bottom: 28px;
+}
+
+.form-link-olvido a,
+.form-link-olvido a:hover {
+  font-family: "Davivienda";
+  text-decoration: none;
+  color: #404040;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+.modal-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(29, 29, 29, 0.7);
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.modal-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  z-index: 1002;
+  width: 400px;
+}
+
+.modal-error__icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 16px;
+  padding: 4.67px;
+}
+
+.modal-error__title {
+  display: inline-block;
+  font-family: "Davivienda";
+  font-size: 22px;
+  font-weight: 700;
+  color: #404040;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.modal-error__content {
+  display: inline-block;
+  font-family: "Davivienda";
+  font-size: 18px;
+  font-weight: 400;
+  color: #404040;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.modal-error__button {
+  width: 224px;
+  height: 43px;
+  border-radius: 22px;
+  border: 1px solid #e1111c;
+  background-color: #e1111c;
+  text-align: center;
+  cursor: pointer;
+  padding: 8px 16px;
+  color: #ffffff;
+}
+
+.modal-error__button a,
+.modal-error__button a:hover {
+  text-decoration: none;
+  font-family: "Davivienda";
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+}
+
+.tablaMessage {
+  color: #b70412;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.div-mensajes-gral {
+  display: block;
+}
+
+.div-mensajes-gral-codigo {
+  display: block;
+}
+
+@media (max-width:768px) {
+
+  /*Nuevo*/
+  /*Ajustado para responsividad*/
+  /*Breakpoint para Tablets*/
+  div.loginp {
+    background: url("fondo-login-tablet.jpg") no-repeat center center;
+  }
+
+  .vigilado-icon {
+    display: none;
+  }
+
+  .auth-form-container {
+    max-width: 512px;
+  }
+
+  .auth-form__logo {
+    width: 100%;
+    max-width: 237px;
+    aspect-ratio: 237 / 22;
+    /* opción moderna para mantener proporción */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 96px;
+    margin-bottom: 30px;
+  }
+
+  .auth-form__title {
+    margin-bottom: 9px;
+    font-size: 18px;
+  }
+
+  .auth-form__subtitle {
+    margin-bottom: 23px;
+    font-size: 22px;
+  }
+
+  .form-field__select {
+    margin-bottom: 24px;
+  }
+
+  .form-field__select label {
+    margin: 0px 8px 6px;
+    font-size: 14px;
+  }
+
+  .form-field__numero-documento {
+    margin-bottom: 27px;
+  }
+
+  .form-field__numero-documento label {
+    margin: 0px 8px 6px;
+    font-size: 14px;
+  }
+
+  .error-message-container__numero-documento,
+  .error-message-container__clave-virtual,
+  .error-message-container__otp {
+    margin-top: 7px;
+    font-size: 12px;
+  }
+
+  .form-field__remember label {
+    font-size: 14px;
+  }
+
+  .form-field__clave-virtual {
+    margin-top: 27px;
+  }
+
+  .form-field__clave-virtual label {
+    margin: 0px 8px 6px;
+    font-size: 14px;
+  }
+
+  .form-field__otp {
+    margin-top: 27px;
+  }
+
+  .form-field__otp label {
+    margin: 0px 8px 6px;
+    font-size: 14px;
+  }
+
+  .form-field__counter-label {
+    font-size: 14px;
+  }
+
+  .form-login input[type="submit"]:disabled {
+    font-size: 14px;
+    width: 216px;
+  }
+
+  .form-login input[type="submit"] {
+    font-size: 14px;
+    width: 216px;
+  }
+
+  .form-divider {
+    max-width: 512px;
+    margin-top: 74px;
+  }
+
+  .form-link-olvido {
+    margin-bottom: 32px;
+  }
+
+  .modal-error {
+    width: 280px;
+  }
+
+  .modal-error__title {
+    font-size: 18px;
+  }
+
+  .modal-error__content {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .modal-error__button {
+    width: 232px;
+    height: 40px;
+  }
+
+  .modal-error__button a,
+  .modal-error__button a:hover {
+    font-size: 16px;
+  }
+
+  .tablaMessage {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 390px) {
+
+  /*Breakpoint para dispositivos móviles*/
+  div.loginp {
+    background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/fondo-login-mobile.jpg.jsf?ln=img") no-repeat center center;
+  }
+
+  .vigilado-icon {
+    display: none;
+  }
+
+  .auth-form-container {
+    max-width: 328px;
+  }
+
+  .auth-form__logo {
+    width: 237px;
+    max-width: 237px;
+    aspect-ratio: 237 / 22;
+    /* opción moderna para mantener proporción */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 24px;
+    margin-bottom: 30px;
+  }
+
+  .auth-form__title {
+    margin-bottom: 9px;
+    font-size: 18px;
+  }
+
+  .auth-form__subtitle {
+    margin-bottom: 19px;
+    font-size: 22px;
+  }
+
+  .form-field__select {
+    margin-bottom: 20px;
+  }
+
+  .form-field__select label {
+    margin: 0px 8px 10px;
+    font-size: 14px;
+  }
+
+  .form-field__numero-documento {
+    margin-bottom: 26px;
+  }
+
+  .form-field__numero-documento label {
+    margin: 0px 8px 10px;
+    font-size: 14px;
+  }
+
+  .error-message-container__numero-documento,
+  .error-message-container__clave-virtual,
+  .error-message-container__otp {
+    margin-top: 7px;
+    font-size: 12px;
+  }
+
+  .form-field__remember label {
+    font-size: 14px;
+  }
+
+  .form-field__clave-virtual {
+    margin-top: 28px;
+  }
+
+  .form-field__clave-virtual label {
+    margin: 0px 8px 10px;
+    font-size: 14px;
+  }
+
+  .form-field__otp {
+    margin-top: 28px;
+  }
+
+  .form-field__otp label {
+    margin: 0px 8px 10px;
+    font-size: 14px;
+  }
+
+  .form-field__counter-label {
+    font-size: 14px;
+  }
+
+  .form-login input[type="submit"]:disabled {
+    font-size: 14px;
+    margin-top: 28px;
+    width: 216px;
+  }
+
+  .form-login input[type="submit"] {
+    font-size: 14px;
+    margin-top: 28px;
+    width: 216px;
+  }
+
+  .form-divider {
+    max-width: 328px;
+    margin-top: 30px;
+    margin-bottom: 23px;
+  }
+
+  .form-link-olvido {
+    margin-bottom: 32px;
+  }
+
+  .modal-error {
+    width: 280px;
+  }
+
+  .modal-error__title {
+    font-size: 18px;
+  }
+
+  .modal-error__content {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .modal-error__button {
+    width: 232px;
+    height: 40px;
+  }
+
+  .modal-error__button a,
+  .modal-error__button a:hover {
+    font-size: 16px;
+  }
+
+  .tablaMessage {
+    font-size: 12px;
+  }
+}
+
+.span-ico {
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  display: block;
+  width: 10px;
+  height: 7px;
+}
+
+body div.loginp div.wrap div.form form.login div.input div.content-select span.ico {
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  display: block;
+  width: 10px;
+  height: 7px;
+}
+
+body div.loginp div.wrap div.form form.login div.input div.content-select span.ico i.icono {
+  margin-right: 0;
+  display: block;
+}
+
+.div-content-select span.ico {
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  display: block;
+  width: 10px;
+  height: 7px;
+}
+
+.i-icono {
+  margin-right: 0;
+  display: block;
+}
+
+.div-content-select span.ico i.icono {
+  margin-right: 0;
+  display: block;
+}
+
+.i-icono.flecha-abajo {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/flecha-abajo.png.jsf?ln=img") no-repeat center center;
+  width: 10px;
+  height: 7px;
+}
+
+.div-content-select span.ico i.icono.flecha-abajo {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/flecha-abajo.png.jsf?ln=img") no-repeat center center;
+  width: 10px;
+  height: 7px;
+}
+
+body div.loginp div.wrap div.form form.login div.input div.content-select span.ico i.icono.flecha-abajo {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/flecha-abajo.png.jsf?ln=img") no-repeat center center;
+  width: 10px;
+  height: 7px;
+}
+
+.select-select {
+  z-index: 10;
+  position: relative;
+  margin-bottom: 0;
+  cursor: pointer;
+  /***/
+  background: none;
+  border: none;
+  opacity: 0;
+}
+
+body div.loginp div.wrap div.form form.login div.input div.content-select select.select {
+  z-index: 10;
+  position: relative;
+  margin-bottom: 0;
+  cursor: pointer;
+  /***/
+  background: none;
+  border: none;
+  opacity: 0;
+}
+
+.div-content-select select.select {
+  z-index: 10;
+  position: relative;
+  margin-bottom: 0;
+  cursor: pointer;
+  /***/
+  background: none;
+  border: none;
+  opacity: 0;
+}
+
+.span-select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  font-size: 14px;
+  cursor: default;
+  overflow: hidden;
+  height: 40px;
+  width: 100%;
+  line-height: 40px;
+  text-indent: 15px;
+  padding-right: 20%;
+  color: #ffffff;
+}
+
+.div-content-select span.select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  font-size: 14px;
+  cursor: default;
+  overflow: hidden;
+  height: 40px;
+  width: 100%;
+  line-height: 40px;
+  text-indent: 15px;
+  padding-right: 20%;
+  color: #ffffff;
+}
+
+body div.loginp div.wrap div.form form.login div.input div.content-select span.select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  font-size: 14px;
+  cursor: default;
+  overflow: hidden;
+  height: 40px;
+  width: 100%;
+  line-height: 40px;
+  text-indent: 15px;
+  padding-right: 20%;
+  color: #ffffff;
+}
+
+body div.loginp div.wrap div.form form.login div.input input {
+  width: 100%;
+  /*Ajustado para responsividad*/
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #595959;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+body div.loginp div.wrap div.form form.login div.input input::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+body div.loginp div.wrap div.form form.login div.input input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #ffffff;
+  opacity: 1;
+}
+
+body div.loginp div.wrap div.form form.login div.input input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #ffffff;
+  opacity: 1;
+}
+
+body div.loginp div.wrap div.form form.login div.input input:-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.input-error {
+  background-color: #F3777D;
+  border: 1px solid #ed1c27;
+}
+
+body div.loginp div.wrap div.form form.login div.input input.error {
+  background-color: #F3777D;
+  border: 1px solid #ed222d;
+}
+
+.p-error {
+  margin: 10px 0 0;
+  padding: 0;
+  font-style: italic;
+}
+
+body div.loginp div.wrap div.form form.login div.input p.error {
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+body div.loginp div.wrap div.form form.login div.input.clave-virtual {
+  display: none;
+}
+
+body div.loginp div.wrap div.form form.login div.input.token {
+  display: none;
+}
+
+body div.loginp div.wrap div.form form.registro div.input {
+  float: left;
+  margin-right: 10px;
+}
+
+body div.loginp div.wrap div.form form.registro div.input label {
+  display: block;
+  margin: 0 0 5px 0;
+}
+
+body div.loginp div.wrap div.form form.registro div.input div.content-select {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #595959;
+}
+
+body div.loginp div.wrap div.form form.registro div.input div.content-select select {
+  width: 180px;
+  height: 36px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+body div.loginp div.wrap div.form form.registro div.input div.content-select span.ico {
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  display: block;
+  width: 10px;
+  height: 7px;
+}
+
+body div.loginp div.wrap div.form form.registro div.input div.content-select span.ico i.icono {
+  margin-right: 0;
+  display: block;
+}
+
+body div.loginp div.wrap div.form form.registro div.input div.content-select span.ico i.icono.flecha-abajo {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/flecha-abajo.png.jsf?ln=img") no-repeat center center;
+  width: 10px;
+  height: 7px;
+}
+
+body div.loginp div.wrap div.form form.registro div.input div.content-select select.select {
+  z-index: 10;
+  position: relative;
+  margin-bottom: 0;
+}
+
+body div.loginp div.wrap div.form form.registro div.input div.content-select span.select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  font-size: 13px;
+  cursor: default;
+  overflow: hidden;
+  height: 34px;
+  width: 100%;
+  line-height: 32px;
+  text-indent: 15px;
+  padding-right: 20%;
+  color: #ffffff;
+}
+
+body div.loginp div.wrap div.form form.registro div.input input {
+  width: 160px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  padding: 5px 10px;
+  background-color: #595959;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+body div.loginp div.wrap div.form form.registro div.input input::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+body div.loginp div.wrap div.form form.registro div.input input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #ffffff;
+  opacity: 1;
+}
+
+body div.loginp div.wrap div.form form.registro div.input input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #ffffff;
+  opacity: 1;
+}
+
+body div.loginp div.wrap div.form form.registro div.input input:-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+body div.loginp div.wrap div.form form.registro div.input input.error {
+  background-color: #F3777D;
+  border: 1px solid #ed1c27;
+}
+
+body div.loginp div.wrap div.form form.registro div.input p.error {
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+body div.loginp div.wrap div.form form.registro div.paso {
+  display: none;
+}
+
+body div.loginp div.wrap div.form form.registro div.activo {
+  display: block;
+}
+
+body div.loginp div.wrap div.form form.registro div.alerta {
+  display: none;
+  width: 280px;
+  margin: 10px 0 0 20px;
+  padding: 5px;
+  color: #ffffff;
+  float: left;
+}
+
+body div.loginp div.wrap div.form form.registro div.alerta p {
+  padding: 0;
+  margin: 0;
+}
+
+body div.loginp div.wrap div.form div.pasos {
+  display: none;
+}
+
+body div.loginp div.wrap div.form div.pasos ul {
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+body div.loginp div.wrap div.form div.pasos ul li {
+  display: inline-block;
+  color: #999999;
+}
+
+body div.loginp div.wrap div.form div.pasos ul li.activo {
+  color: #ffffff;
+}
+
+body div.loginp div.wrap div.ayuda {
+  float: right;
+  overflow: hidden;
+  margin-left: 1%;
+  width: 40%;
+  /*Ajustado para responsividad*/
+}
+
+body div.loginp div.wrap div.ayuda h4 {
+  padding: 40px 0 0;
+  font-size: 22px;
+  margin: 40px 0 10px 0;
+}
+
+body div.loginp div.wrap div.ayuda h4 span {
+  font-family: "HelveticaNeueLTStdHvCn", sans-serif;
+}
+
+body div.loginp div.wrap div.ayuda ul {
+  margin: 0;
+  padding: 0 0 0 15px;
+  list-style: circle url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/bullet.png.jsf?ln=img");
+}
+
+body div.loginp div.wrap div.ayuda ul li {
+  margin: 0 0 5px 0;
+}
+
+body div.loginp div.wrap div.ayuda ul li a {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+body div.loginp div.wrap div.ayuda ul li a:hover {
+  text-decoration: underline;
+}
+
+body div.loginp div.wrap div.ayuda div.left {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/ayuda.png.jsf?ln=img") no-repeat center top;
+  float: left;
+  margin-right: 2%;
+  width: 49%;
+}
+
+body div.loginp div.wrap div.ayuda div.left ul {
+  border-right: 1px solid #737373;
+}
+
+body div.loginp div.wrap div.ayuda div.left ul li span {
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+}
+
+body div.loginp div.wrap div.ayuda div.right {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/seguridad.png.jsf?ln=img") no-repeat center top;
+  float: right;
+  width: 49%;
+}
+
+body div.loginp div.wrap div.ayuda div.right ul li span {
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+}
+
+body div.loginp div.wrap a.btn-cerrar {
+  position: absolute;
+  top: 40px;
+  /*Ajustado para responsividad*/
+  right: 2%;
+  /*Ajustado para responsividad*/
+  width: 30px;
+  height: 20px;
+}
+
+body div.loginp div.wrap a.btn-cerrar-msj {
+  right: 0px;
+  width: 15px;
+  height: 15px;
+  float: right;
+  display: block;
+}
+
+body div.loginp div.wrap a.btn-cerrar i.icono-cerrar {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/cerrar.png.jsf?ln=img") no-repeat -10px -10px;
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+body div.loginp div.wrap a.btn-cerrar-msj i.icono-cerrar-msj {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/cerrar.png.jsf?ln=img") no-repeat scroll -18px -2px/34px auto border-box transparent;
+  background-color: transparent;
+  background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/cerrar.png.jsf?ln=img");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: -18px -2px;
+  background-clip: border-box;
+  background-origin: border-box;
+  background-size: 34px auto;
+  height: 14px;
+  display: block;
+  width: 13px;
+}
+
+body div.loginp div.wrap a.btn-cerrar i.icono-cerrar:hover {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/cerrar.png.jsf?ln=img") no-repeat -50px -10px;
+}
+
+.comboTipoDoc {
+  display: inline-block;
+  height: 36px;
+  margin-bottom: 10px;
+  border: medium none;
+  border-radius: 10px;
+  background-color: #595959;
+  color: #ffffff;
+  font-family: "HelveticaNeueLTStdCn", sans-serif, serif;
+  font-size: 14px;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+body div.loginp div.wrap div.form {
+  float: center;
+  /*width: 56%;*/
+  /*Ajustado para responsividad*/
+  padding: 10px 0;
+}
+
+.div-form {
+  float: left;
+  width: 56%;
+  padding: 40px 0;
+}
+
+.div-login {
+  display: block;
+  width: 100%;
+  height: 250px;
+  color: #ffffff;
+  overflow: hidden;
+  background-size: cover;
+  margin-bottom: -1px;
+}
+
+body div.loginp div.wrap {
+  width: 100%;
+  /*Ajustado para responsividad*/
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.div-wrap {
+  width: 1170px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+body div.loginp div.wrap div.exito {
+  display: none;
+  float: left;
+  width: 56%;
+  padding: 40px 0;
+  color: #ffffff;
+}
+
+.div-exito {
+  display: none;
+  float: left;
+  width: 56%;
+  padding: 40px 0;
+  color: #ffffff;
+}
+
+.div-exito ul {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+  display: table;
+  border-bottom: 1px solid #595959;
+}
+
+body div.loginp div.wrap div.exito ul {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+  display: table;
+  border-bottom: 1px solid #595959;
+}
+
+body div.loginp div.wrap div.exito ul.mensaje li {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.div-exito ul.mensaje li {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+body div.loginp div.wrap div.exito ul.mensaje li:first-child {
+  width: 64px;
+}
+
+
+
+body div.loginp div.wrap div.exito p {
+  font-size: 21px;
+  margin: 0 0 0 74px;
+}
+
+body div.loginp div.wrap div.exito a {
+  color: #ffffff;
+  font-size: 18px;
+  margin: 0 0 0 74px;
+}
+
+body div.loginp div.wrap div.exito a i.icono {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+body div.loginp div.wrap div.exito a i.icono.bullet {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/bullet.png.jsf?ln=img") no-repeat center center;
+  width: 7px;
+  height: 10px;
+}
+
+body div.loginp div.wrap div.exito a:hover {
+  text-decoration: underline;
+}
+
+.flechaAbajo {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/flecha-abajo.png.jsf?ln=img") no-repeat center center;
+  width: 10px;
+  height: 7px;
+  position: absolute;
+  top: 2px;
+  right: -4px;
+  display: block;
+  cursor: pointer;
+}
+
+.div-content-select2 {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 200px;
+  cursor: pointer;
+}
+
+.div-content-select2 select {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/flecha-abajo.png.jsf?ln=img") no-repeat 185px #595959;
+  width: 200px;
+  height: 36px;
+  line-height: 36px;
+  border: medium none;
+  padding-left: 12px;
+  display: inline-block;
+  border-radius: 10px;
+  color: #ffffff;
+  font-family: "HelveticaNeueLTStdCn", sans-serif, serif;
+  font-size: 14px;
+  background-color: #595959;
+  cursor: pointer;
+  outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.div-content-select2 select option {
+  background: white;
+  color: black;
+}
+
+.mensajes {
+  width: 50%;
+  margin: 0 auto;
+  border: 1px black solid;
+  border-collapse: collapse;
+  list-style-type: none;
+  padding: 10px;
+}
+
+.imagen-error {
+  background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/alerta.png.jsf?ln=img");
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 25px;
+  height: 25px;
+}
+
+.imagen-error-ie25 {
+  background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/alerta.png.jsf?ln=img");
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 25px;
+  height: 25px;
+}
+
+.imagen-error-rowspan2 {
+  background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/alerta.png.jsf?ln=img");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 32px;
+  height: 32px;
+}
+
+.imagen-error-rowspan2-ie32 {
+  background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/alerta.png.jsf?ln=img");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 32px;
+  height: 32px;
+}
+
+.imagen-info {
+  background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/exito.png.jsf?ln=img");
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 20px;
+  height: 20px;
+}
+
+.imagen-info-ie20 {
+  background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/exito-ie20.png.jsf?ln=img");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 20px;
+  height: 20px;
+}
+
+.imagen-info-rowspan2 {
+  background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/exito.png.jsf?ln=img");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 32px;
+  height: 32px;
+}
+
+.imagen-info-rowspan2-ie32 {
+  background-image: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/exito-ie32.png.jsf?ln=img");
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 32px;
+  height: 32px;
+}
+
+.mensajeHeaderMessage {
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.mensajes-info {
+  padding-left: 2px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.linkEnrolamiento {
+  color: #ffffff;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.linkEnrolamiento:hover {
+  color: #ffffff;
+  font-weight: bold;
+  margin-left: 5px;
+  text-decoration: underline;
+}
+
+div.bg-modal {
+  display: block;
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+}
+
+div.bg-modal div.modal-info-adicional {
+  margin: 20px auto;
+  width: 920px;
+  height: 520px;
+  background-color: #FFF;
+  position: relative;
+  z-index: 2001;
+  border: 4px solid #bfbfbf;
+  border-radius: 10px;
+  padding: 20px 40px;
+  color: #6D6D71;
+  font-size: 14px;
+}
+
+div.bg-modal a.btn-cerrar-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/cerrar-login.png.jsf?ln=img") no-repeat center center;
+  width: 20px;
+  height: 20px;
+}
+
+div.bg-modal a.btn-cerrar-modal:hover {
+  opacity: 0.8;
+}
+
+div.bg-modal {
+  color: #c1191f;
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+  font-size: 22px;
+  margin: 0 0 10px;
+}
+
+div.bg-modal p {
+  margin: 0 0 20px;
+}
+
+div.bg-modal div.content-modal {
+  overflow: hidden;
+}
+
+div.bg-modal div.content-modal-left {
+  float: left;
+  width: 500px;
+  padding: 10px 40px 10px 0;
+}
+
+div.bg-modal div.content-modal-left p {
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+  font-size: 18px;
+  color: #6D6D71;
+  margin: 0 0 5px;
+}
+
+div.bg-modal div.content-modal-left ul {
+  margin: 0;
+  padding: 0 0 0 13px;
+  list-style: circle url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/bullet-gris.png.jsf?ln=img");
+  font-family: "HelveticaNeueLTStdCn", sans-serif;
+}
+
+div.bg-modal div.content-modal-left ul li {
+  margin-bottom: 5px;
+}
+
+div.bg-modal div.content-modal-left ul.opciones span {
+  font-size: 18px;
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+  color: #212629;
+  display: block;
+}
+
+div.bg-modal div.content-modal-right {
+  float: right;
+  border-left: 1px solid #DDDDDD;
+  padding: 10px 40px 10px;
+  width: 320px;
+}
+
+div.bg-modal div.content-modal-right.faq p {
+  font-family: "HelveticaNeueLTStdCn", sans-serif;
+  color: #c1191f;
+  font-size: 22px;
+  margin: 0 0 5px;
+}
+
+div.bg-modal div.content-modal-right.faq p span {
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+}
+
+div.bg-modal div.content-modal-right.faq ul {
+  margin: 0;
+  padding: 0 0 0 13px;
+  list-style: circle url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/bullet-gris.png.jsf?ln=img");
+  font-family: "HelveticaNeueLTStdCn", sans-serif;
+}
+
+div.bg-modal div.content-modal-right.faq ul li {
+  margin-bottom: 5px;
+}
+
+div.bg-modal div.content-modal-right.faq ul li:last-child {
+  color: #c1191f;
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+}
+
+div.bg-modal div.content-modal-right.ayuda p.titulo {
+  font-family: "HelveticaNeueLTStdCn", sans-serif;
+  color: #c1191f;
+  font-size: 22px;
+  margin: 0 0 5px;
+}
+
+div.bg-modal div.content-modal-right.ayuda p.titulo span {
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+}
+
+div.bg-modal div.content-modal-right.ayuda ul {
+  margin: 0;
+  padding: 0 0 0 13px;
+  font-family: "HelveticaNeueLTStdCn", sans-serif;
+  list-style: circle url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/bullet-gris.png.jsf?ln=img");
+}
+
+div.bg-modal div.content-modal-right.ayuda ul.tel {
+  padding: 0;
+  list-style: none;
+}
+
+div.bg-modal div.content-modal-right.ayuda ul li {
+  margin-bottom: 5px;
+}
+
+div.bg-modal ul.pasos {
+  display: table;
+  width: 832px;
+  margin: 20px 0 20px;
+  padding: 0;
+  height: 40px;
+  border-radius: 20px;
+}
+
+div.bg-modal ul.pasos.paso-1 {
+  background: url("") no-repeat top left;
+}
+
+div.bg-modal ul.pasos.paso-1 li:first-child {
+  color: #ffffff;
+}
+
+div.bg-modal ul.pasos.paso-2 {
+  background: url("") no-repeat top left;
+}
+
+div.bg-modal ul.pasos.paso-2 li:nth-child(2) {
+  color: #ffffff;
+}
+
+div.bg-modal ul.pasos.paso-3 {
+  background: url("") no-repeat top left;
+}
+
+div.bg-modal ul.pasos.paso-3 li:last-child {
+  color: #ffffff;
+}
+
+div.bg-modal ul.pasos li {
+  display: table-cell;
+  width: 274px;
+  padding: 5px 30px 0;
+  vertical-align: middle;
+  color: #A5A5A5;
+}
+
+div.bg-modal ul.dos-pasos {
+  display: table;
+  width: 832px;
+  margin: 20px 0 20px;
+  padding: 0;
+  height: 40px;
+  border-radius: 20px;
+}
+
+div.bg-modal ul.dos-pasos.paso-1 {
+  background: url("") no-repeat top left;
+}
+
+div.bg-modal ul.dos-pasos.paso-1 li:first-child {
+  color: #ffffff;
+}
+
+div.bg-modal ul.dos-pasos.paso-2 {
+  background: url("") no-repeat top left;
+}
+
+div.bg-modal ul.dos-pasos.paso-2 li:nth-child(2) {
+  color: #ffffff;
+}
+
+div.bg-modal ul.dos-pasos li {
+  display: table-cell;
+  width: 274px;
+  padding: 5px 30px 0;
+  vertical-align: middle;
+  color: #A5A5A5;
+}
+
+div.bg-modal form div.form-left {
+  float: left;
+  width: 220px;
+}
+
+div.bg-modal form div.form-right {
+  float: right;
+  width: 220px;
+}
+
+div.bg-modal form div.input {
+  width: 220px;
+  margin: 0 0 15px 0;
+  height: 90px;
+}
+
+div.bg-modal form div.input.pregunta,
+div.bg-modal form div.input.respuesta {
+  height: 50px;
+}
+
+div.bg-modal form div.input div.content-select {
+  position: relative;
+  height: 36px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #e5e5e5;
+  display: block;
+  width: 220px;
+}
+
+div.bg-modal form div.input div.content-select select {
+  width: 220px;
+  height: 36px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+div.bg-modal form div.input div.content-select span.ico {
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  display: block;
+  width: 10px;
+  height: 7px;
+}
+
+div.bg-modal form div.input div.content-select span.ico i.icono {
+  margin-right: 0;
+  display: block;
+}
+
+div.bg-modal form div.input div.content-select span.ico i.icono.flecha-abajo {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/flecha-abajo.png.jsf?ln=img") no-repeat center center;
+  width: 10px;
+  height: 7px;
+}
+
+div.bg-modal form div.input div.content-select select.select {
+  z-index: 10;
+  position: relative;
+  margin-bottom: 0;
+  cursor: pointer;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+div.bg-modal form div.input div.content-select span.select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  font-size: 14px;
+  cursor: default;
+  overflow: hidden;
+  height: 40px;
+  width: 100%;
+  line-height: 40px;
+  text-indent: 15px;
+  padding-right: 20%;
+  color: #6D6D71;
+}
+
+div.bg-modal form div.input input {
+  width: 220px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  padding: 5px 15px;
+  background-color: #e5e5e5;
+  color: #000000;
+  font-size: 14px;
+  font-family: "HelveticaNeueLTStdCn", sans-serif;
+  display: block;
+}
+
+div.bg-modal form div.input input.error {
+  background-color: #F3777D;
+  border: 1px solid #ed1c27;
+}
+
+div.bg-modal form div.input p {
+  font-family: "HelveticaNeueLTStdCn", sans-serif;
+  font-style: italic;
+}
+
+div.bg-modal form div.input p.ayuda-input {
+  font-size: 12px;
+  text-align: right;
+  margin-top: 5px;
+  padding-right: 5px;
+}
+
+div.bg-modal form div.input p.ayuda-input a {
+  color: #ed1c27;
+}
+
+div.bg-modal form div.input p.ayuda-input a i.icon-bullet {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/bullet-rojo.png.jsf?ln=img") no-repeat center center;
+  width: 7px;
+  height: 10px;
+  display: inline-block;
+}
+
+div.bg-modal form div.input p.ayuda-input a:hover {
+  opacity: 0.8;
+}
+
+div.bg-modal form div.input p.error {
+  font-size: 14px;
+  margin: 5px 0 0;
+  padding: 0;
+  color: #c1191f;
+}
+
+.combo-item {
+  color: #6d6e72;
+  background-color: #e5e5e5;
+  border-top: 1px solid #a6a6a6;
+  cursor: pointer;
+  line-height: 36px;
+  padding-left: 12px;
+  width: 200px;
+}
+
+.combo-content-scroll {
+  height: 148px;
+  overflow: hidden;
+  border-radius: 0 0 10px 10px;
+  width: 242px;
+}
+
+.combo-item:hover {
+  color: #ffffff;
+  background-color: #a6a6a6;
+}
+
+#selectInputContentTipoDoc {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+span.error {
+  float: left;
+}
+
+header div.cabecera {
+  width: 100%;
+  color: #FFF;
+  background-color: #ED1C27;
+  position: relative;
+  height: auto;
+  margin-top: -14px;
+}
+
+header div.cabecera div.wrap {
+  width: 100%;
+  min-height: 90px;
+  overflow: hidden;
+  margin: 0px auto;
+  padding: 0px 20px;
+  position: relative;
+  max-width: 1180px;
+  box-sizing: border-box;
+}
+
+header div.cabecera div.wrap div.tipo-acceso nav.acceso ul {
+  margin: 0;
+  padding: 0;
+  display: table;
+  width: 100%;
+}
+
+header div.cabecera div.wrap div.tipo-acceso nav.acceso ul li {
+  list-style: none;
+  display: table-cell;
+  width: 50%;
+  position: relative;
+}
+
+header div.cabecera div.wrap div.tipo-acceso nav.acceso ul li img {
+  position: absolute;
+  top: 32px;
+  left: 70px;
+}
+
+header div.cabecera div.wrap div.tipo-acceso nav.acceso ul li a {
+  display: block;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+header div.cabecera div.wrap div.tipo-acceso nav.acceso ul li a i.icono {
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+
+header div.cabecera div.wrap div.tipo-acceso nav.acceso ul li a i.icono.personas {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/personas.png.jsf?ln=img") no-repeat center center;
+  width: 28px;
+  height: 20px;
+}
+
+header div.cabecera div.wrap div.tipo-acceso nav.acceso ul li a i.icono.empresas {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/empresas.png.jsf?ln=img") no-repeat center center;
+  width: 23px;
+  height: 20px;
+}
+
+header div.cabecera div.wrap div.tipo-acceso nav.acceso ul li a.activo {
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+}
+
+header div.cabecera div.wrap div.info-corporativa {
+  float: left;
+  width: 15%;
+  margin: 15px 0 0 5%;
+}
+
+header div.cabecera div.wrap div.info-corporativa ul {
+  margin: 0;
+  padding: 0 0 0 10px;
+  list-style: circle url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/bullet.png.jsf?ln=img");
+}
+
+header div.cabecera div.wrap div.info-corporativa ul li {
+  margin: 0 0 5px;
+}
+
+header div.cabecera div.wrap div.info-corporativa ul li a {
+  color: #ffffff;
+}
+
+header div.cabecera div.wrap div.info-corporativa ul li a:hover {
+  text-decoration: underline;
+}
+
+header div.cabecera div.wrap div.despliegue-login a:hover {
+  background: #333333;
+}
+
+header div.cabecera div.aqui-puedo {
+  width: 100%;
+  overflow: hidden;
+  clear: both;
+  background-color: #ffffff;
+  z-index: 1;
+  height: 50px;
+}
+
+header div.cabecera div.aqui-puedo div.wrap {
+  padding: 10px;
+  position: relative;
+}
+
+header div.cabecera div.aqui-puedo div.wrap a.desplegar-aqui-puedo {
+  float: left;
+  font-size: 18px;
+  margin: 5px 0 0 20px;
+  color: #595959;
+}
+
+header div.cabecera div.aqui-puedo div.wrap a.desplegar-aqui-puedo i.icono {
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+
+header div.cabecera div.aqui-puedo div.wrap a.desplegar-aqui-puedo i.icono.ico-abajo {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/ico-abajo.png.jsf?ln=img") no-repeat center center;
+  width: 13px;
+  height: 9px;
+}
+
+header div.cabecera div.aqui-puedo div.wrap a.desplegar-aqui-puedo:hover {
+  text-decoration: underline;
+}
+
+header div.cabecera div.aqui-puedo div.wrap div.buscador {
+  float: right;
+  margin: 0;
+}
+
+header div.cabecera div.aqui-puedo div.wrap div.buscador i.icono {
+  display: inline-block;
+  position: absolute;
+  top: 16px;
+  right: 20px;
+}
+
+header div.cabecera div.aqui-puedo div.wrap div.buscador i.icono.buscar {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/buscar.png.jsf?ln=img") no-repeat center center;
+  width: 16px;
+  height: 16px;
+}
+
+header div.cabecera div.aqui-puedo div.wrap div.buscador input {
+  display: none;
+  width: 270px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  padding: 5px 10px;
+  background-color: #e5e5e5;
+  color: #000000;
+  font-size: 14px;
+  font-family: "HelveticaNeueLTStdCn", sans-serif;
+}
+
+header div.cabecera div.aqui-puedo div.wrap div.buscador input::-webkit-input-placeholder {
+  color: #6D6D71;
+  opacity: 1;
+}
+
+header div.cabecera div.aqui-puedo div.wrap div.buscador input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #6D6D71;
+  opacity: 1;
+}
+
+header div.cabecera div.aqui-puedo div.wrap div.buscador input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #6D6D71;
+  opacity: 1;
+}
+
+header div.cabecera div.aqui-puedo div.wrap div.buscador input:-ms-input-placeholder {
+  color: #6D6D71;
+  opacity: 1;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  clear: both;
+  background-color: #ececec;
+  display: none;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu div.grupo-1 {
+  overflow: hidden;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu div.grupo-2 {
+  overflow: hidden;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul {
+  margin: 0;
+  padding: 20px 20px 10px;
+  float: left;
+  color: #22262a;
+  width: 25%;
+  list-style: none;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul li {
+  font-size: 12px;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul li:first-child {
+  color: #ad0000;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul li:nth-child(2) {
+  margin-bottom: 5px;
+  height: 30px;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul li i.icono {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul li ul {
+  width: 100%;
+  padding: 0 0 0 12px;
+  margin: 0;
+  list-style: circle url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/bullet-gris.png.jsf?ln=img");
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul li ul li {
+  font-size: 14px;
+  color: #6d6e72;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul li ul li:first-child {
+  font-size: 14px;
+  margin-bottom: 0;
+  color: #6d6e72;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul li ul li:nth-child(2) {
+  margin-bottom: 0;
+  height: inherit;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul li ul li a {
+  color: #6d6e72;
+}
+
+header div.cabecera div.aqui-puedo nav.aqui-puedo div.wrap.menu ul li ul li a:hover {
+  text-decoration: underline;
+}
+
+header div.cabecera ul#myMenu {
+  display: block;
+  width: 110px;
+  margin: -170px 0 0;
+  padding: 0;
+  z-index: -10;
+  position: fixed;
+  right: 50px;
+  top: 50%;
+}
+
+header div.cabecera ul#myMenu li {
+  list-style: none;
+  padding: 20px 5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 10px 0;
+  text-align: center;
+  font-size: 12px;
+  font-stretch: extra-condensed;
+}
+
+header div.cabecera ul#myMenu li a {
+  display: block;
+  color: #ffffff;
+}
+
+header div.cabecera ul#myMenu li a i.icono {
+  display: block;
+  margin: 0 auto 5px;
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/ico-menu.png.jsf?ln=img") no-repeat top left;
+}
+
+header div.cabecera ul#myMenu li a i.icono.ico-casa {
+  background-position: -6px -11px;
+  width: 29px;
+  height: 28px;
+}
+
+header div.cabecera ul#myMenu li a i.icono.ico-carro {
+  background-position: -6px -87px;
+  width: 29px;
+  height: 25px;
+}
+
+header div.cabecera ul#myMenu li a i.icono.ico-canales {
+  background-position: -10px -158px;
+  width: 21px;
+  height: 30px;
+}
+
+header div.cabecera ul#myMenu li a i.icono.ico-movil {
+  background-position: -13px -236px;
+  width: 21px;
+  height: 30px;
+}
+
+header div.cabecera ul#myMenu li.active {
+  background-color: #ffffff;
+}
+
+header div.cabecera ul#myMenu li.active a {
+  color: #ed1c27;
+}
+
+header div.cabecera ul#myMenu li.active a i.icono.ico-casa {
+  background-position: -6px -49px;
+}
+
+header div.cabecera ul#myMenu li.active a i.icono.ico-carro {
+  background-position: -6px -122px;
+}
+
+header div.cabecera ul#myMenu li.active a i.icono.ico-canales {
+  background-position: -10px -197px;
+}
+
+header div.cabecera ul#myMenu li.active a i.icono.ico-movil {
+  background-position: -13px -275px;
+  width: 21px;
+  height: 30px;
+}
+
+header.empresas {
+  position: absolute;
+  display: block;
+  width: 100%;
+  z-index: 0;
+  top: 0;
+}
+
+header.empresas div.cabecera div.wrap div.despliegue-login a i.icono.login {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/login.png.jsf?ln=img") no-repeat center center;
+  width: 40px;
+  height: 83px;
+}
+
+.despliegue-login-div-left-icon {
+  width: 15%;
+  float: left;
+}
+
+.despliegue-login-div-right-text {
+  width: 85%;
+  float: right;
+  margin-top: 16px;
+}
+
+
+.despliegue-login-div-container {
+  width: 100%;
+  display: block;
+}
+
+
+
+header.empresas div.cabecera {
+  width: 100%;
+  /* height: 140px; */
+  color: #ffffff;
+  background-color: #6d6d71;
+  position: relative;
+}
+
+header.empresas div.cabecera div.wrap {
+  /* width: 1170px; */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.contenedor-e {
+  z-index: 0;
+  width: 100%;
+  position: relative;
+  float: none;
+}
+
+.flotante {
+  float: none;
+  z-index: 1;
+  text-align: center;
+}
+
+section.home div#fullpage div.section#first {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/Bienvenido.jpg.jsf?ln=img") no-repeat center center;
+  background-size: cover;
+}
+
+section.home div#fullpagee div.section#first {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/imagen_empresas.png.jsf?ln=img") no-repeat center center;
+  background-size: cover;
+  width: 100%;
+}
+
+section.home div#fullpagee div.section#first div.wrap {
+  height: 100vh;
+  min-height: 430px;
+  width: 100%;
+  margin-top: 120px;
+  margin-bottom: -156px;
+}
+
+section.home div#fullpage div.section#second {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/carro.jpg.jsf?ln=img") no-repeat center center;
+  background-size: cover;
+}
+
+section.home div#fullpage div.section#third {
+  position: relative;
+}
+
+section.home div#fullpage div.section#third div#map {
+  width: 100%;
+  height: 100%;
+}
+
+section.home div#fullpage div.section#third div.filtros {
+  position: absolute;
+  top: 134px;
+  left: 0;
+  width: 100%;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form {
+  width: 1010px;
+  float: left;
+  margin-left: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 0 0 10px 10px;
+  padding: 20px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input {
+  float: left;
+  margin-right: 10px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input label {
+  display: block;
+  margin: 0 0 5px 0;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input div.content-select {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #e5e5e5;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input div.content-select select {
+  width: 180px;
+  height: 36px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input div.content-select span.ico {
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  display: block;
+  width: 10px;
+  height: 7px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input div.content-select span.ico i.icono {
+  margin-right: 0;
+  display: block;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input div.content-select span.ico i.icono.flecha-abajo {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/flecha-abajo.png.jsf?ln=img") no-repeat center center;
+  width: 10px;
+  height: 7px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input div.content-select select.select {
+  z-index: 10;
+  position: relative;
+  margin-bottom: 0;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input div.content-select span.select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  text-align: left;
+  font-size: 14px;
+  cursor: default;
+  overflow: hidden;
+  height: 40px;
+  width: 100%;
+  line-height: 40px;
+  text-indent: 15px;
+  padding-right: 20%;
+  color: #6D6D71;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input.oficinas-cajeros ul {
+  list-style: none;
+  margin: 0 10px;
+  padding: 0;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input.oficinas-cajeros ul li {
+  display: inline-block;
+  color: #6D6D71;
+  margin-right: 15px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input.oficinas-cajeros ul li i.icono {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input.oficinas-cajeros ul li i.icono.oficinas {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/oficinas.png.jsf?ln=img") no-repeat center center;
+  width: 12px;
+  height: 16px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input.oficinas-cajeros ul li i.icono.cajeros {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/cajeros.png.jsf?ln=img") no-repeat center center;
+  width: 12px;
+  height: 16px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input.busqueda {
+  margin: 23px 10px 0 0;
+  position: relative;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input.busqueda i.icono-buscar {
+  position: absolute;
+  display: block;
+  top: 10px;
+  right: 10px;
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/buscar.png.jsf?ln=img") no-repeat center center;
+  width: 16px;
+  height: 16px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input.busqueda a {
+  display: block;
+  margin: 15px 10px 0;
+  color: #ed1c27;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input.busqueda a i.icono {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input.busqueda a i.icono.bullet-rojo {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/bullet-rojo.png.jsf?ln=img") no-repeat center center;
+  width: 7px;
+  height: 10px;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input input {
+  width: 270px;
+  height: 36px;
+  border-radius: 10px;
+  border: none;
+  padding: 5px 15px;
+  background-color: #e5e5e5;
+  color: #000000;
+  font-size: 14px;
+  font-family: "HelveticaNeueLTStdCn", sans-serif;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input input::-webkit-input-placeholder {
+  color: #6D6D71;
+  opacity: 1;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #6D6D71;
+  opacity: 1;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #6D6D71;
+  opacity: 1;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form div.input input:-ms-input-placeholder {
+  color: #6D6D71;
+  opacity: 1;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form a.btn {
+  font-size: 14px;
+  margin: 23px 0 0;
+  display: inline-block;
+  height: 35px;
+  padding: 11px 14px 0;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form a.btn i.icono {
+  display: inline-block;
+}
+
+section.home div#fullpage div.section#third div.filtros div.wrap div.form form a.btn i.icono.ico-listado {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/ico-listado.png.jsf?ln=img") no-repeat center center;
+  width: 20px;
+  height: 12px;
+  margin-right: 10px;
+}
+
+section.home div#fullpage div.section#third div.canales {
+  position: absolute;
+  width: 100%;
+  bottom: 50px;
+  right: 0;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales {
+  width: 1010px;
+  float: left;
+  position: relative;
+  margin-left: 20px;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales h3 {
+  color: #3F3F3F;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales h3 span {
+  font-family: "HelveticaNeueLTStdHvCn", sans-serif;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  height: 240px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 30px 40px 40px;
+  font-size: 16px;
+  color: #6D6D71;
+  display: none;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales a.ocultar-mas-canales {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: block;
+  color: #6D6D71;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales a.ocultar-mas-canales i.icono {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales a.ocultar-mas-canales i.icono.ico-ocultar-gris {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/ico-ocultar-gris.png.jsf?ln=img") no-repeat center center;
+  width: 20px;
+  height: 20px;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales div.lineas-atencion {
+  width: 25%;
+  float: left;
+  border-right: 1px solid #E5E5E5;
+  height: 180px;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales div.lineas-atencion ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales div.lineas-atencion ul li span {
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales div.correo {
+  width: 25%;
+  float: left;
+  border-right: 1px solid #E5E5E5;
+  text-align: center;
+  height: 180px;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales div.app {
+  width: 25%;
+  float: left;
+  border-right: 1px solid #E5E5E5;
+  text-align: center;
+  height: 180px;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales div.app div.logo {
+  float: left;
+  width: 80px;
+  margin: 0 10px;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales div.app div.links {
+  float: left;
+  text-align: center;
+  width: 115px;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales div.corresponsales {
+  width: 25%;
+  float: left;
+  text-align: center;
+  height: 180px;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales div.mas-canales div.corresponsales ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales a.mostrar-mas-canales {
+  float: right;
+  background-color: #ffffff;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 15px;
+  color: #ed1c27;
+  font-family: "HelveticaNeueLTStdMdCn", sans-serif;
+  ;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales a.mostrar-mas-canales i.icono {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales a.mostrar-mas-canales i.icono.ico-rojo-arriba {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/ico-rojo-arriba.png.jsf?ln=img") no-repeat center center;
+  width: 20px;
+  height: 20px;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales a.mostrar-mas-canales:hover {
+  background-color: #AD0000;
+  color: #ffffff;
+}
+
+section.home div#fullpage div.section#third div.canales div.wrap div.contenedor-mas-canales a.mostrar-mas-canales:hover i.icono.ico-rojo-arriba {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/ico-blanco-arriba.png.jsf?ln=img") no-repeat center center;
+}
+
+section.home div#fullpage div.section#fourth {
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/movil.jpg.jsf?ln=img") no-repeat center center;
+  background-size: cover;
+}
+
+section.home div#fullpage div.section div.wrap a.btn {
+  background-color: #ed1c27;
+  border-radius: 5px;
+  padding: 15px 20px 11px;
+  font-size: 18px;
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+  color: #ffffff;
+  -webkit-box-shadow: inset 0 -4px 0 0 #ad0000;
+  -moz-box-shadow: inset 0 -4px 0 0 #ad0000;
+  box-shadow: inset 0 -4px 0 0 #ad0000;
+}
+
+section.home div#fullpage div.section div.wrap a.btn i.icono {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+section.home div#fullpage div.section div.wrap a.btn i.icono.ico-boton {
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  background: url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/ico-boton.png.jsf?ln=img") no-repeat center center;
+}
+
+section.home div#fullpage div.section div.wrap a.btn:hover {
+  background-color: #AD0000;
+}
+
+section.home div#fullpage div.section div.wrap p.enunciado {
+  font-size: 50px;
+  color: #ffffff;
+  font-family: "HelveticaNeueLTStdThCn", sans-serif;
+  margin: 0;
+  line-height: 80%;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+section.home div#fullpage div.section div.wrap p.destacado {
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+  font-size: 80px;
+  line-height: 100%;
+  margin: 0 0 35px;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+footer {
+  position: fixed;
+  display: block;
+  height: 50px;
+  background-color: #000;
+  width: 100%;
+  z-index: 10;
+  bottom: 0px;
+  color: #FFF;
+}
+
+.scroll-off {
+  overflow: hidden !important;
+}
+
+.scroll-on {
+  overflow: scroll !important;
+  height: 100% !important;
+  ;
+}
+
+div.fat-footer div.wrap {
+  /*    width: 100%; Ajustado para responsividad*/
+  margin: 0 auto;
+  overflow: inherit;
+  padding: 0 0;
+  position: relative;
+}
+
+div.fat-footer div.wrap a.btn-cerrar-footer {
+  position: absolute;
+  top: -30px;
+  right: 2%;
+  /*Ajustado para responsividad*/
+  width: 20px;
+  height: 20px;
+}
+
+div.fat-footer div.wrap h3 {
+  color: #FFF;
+  font-family: "HelveticaNeueLTStdMdCn", sans-serif;
+  ;
+  margin: 0 0 15px;
+}
+
+div.fat-footer div.wrap ul {
+  margin: 0 0 30px;
+  padding: 0 0 0 10px;
+  list-style: circle url("https://transacciones.davivienda.com/transaccional/javax.faces.resource/bullet.png.jsf?ln=img");
+}
+
+div.fat-footer div.wrap ul li {
+  margin-bottom: 12px;
+}
+
+div.fat-footer div.wrap ul li a {
+  color: #ffffff;
+}
+
+div.fat-footer div.wrap ul li a:hover {
+  text-decoration: underline;
+}
+
+div.fat-footer div.wrap div.logos {
+  width: 25%;
+  float: left;
+}
+
+div.fat-footer div.wrap div.logos ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+div.fat-footer div.wrap div.lineas-atencion {
+  float: left;
+}
+
+div.fat-footer div.wrap div.lineas-atencion ul {
+  margin: 0;
+  padding: 0;
+}
+
+div.fat-footer div.wrap div.lineas-atencion ul li {
+  list-style: none;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+div.fat-footer div.wrap div.lineas-atencion ul li:nth-child(2n+1) {
+  color: rgba(179, 179, 179, 0.6);
+}
+
+div.fat-footer div.wrap div.lineas-atencion ul li:nth-child(2n+2) {
+  color: #FFF;
+  font-family: "HelveticaNeueLTStdBdCn", sans-serif;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+div.fat-footer div.wrap div.links-interes {
+  width: 25%;
+  float: left;
+}
+
+div.fat-footer div.wrap div.links-interes ul.redes-sociales {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+div.fat-footer div.wrap div.links-interes ul.redes-sociales li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+div.fat-footer div.wrap div.portales-davivienda {
+  width: 25%;
+  float: left;
+}
+
+footer div.wrap {
+  /*    width: 100%; Ajustado para responsividad*/
+  margin: 0 auto;
+  /*padding: 0 0;*/
+  /*Ajustado para responsividad*/
+  position: relative;
+}
+
+footer div.wrap a.mostrar-fat-footer {
+  position: absolute;
+  top: -20px;
+  width: 60px;
+  height: 20px;
+  left: 50%;
+  margin-left: -30px;
+}
+
+footer div.wrap div.legales {
+  /*float: left;  Nuevo Ajustado para responsividad*/
+  overflow: hidden;
+}
+
+footer div.wrap div.legales img {
+  margin: 15px 20px 0 0;
+  float: left;
+  width: 140px;
+}
+
+footer div.wrap div.legales p {
+  /*    float: left; Nuevo Ajustado para responsividad*/
+  text-align: center;
+  /*Nuevo Ajustado para responsividad*/
+
+}
+
+footer div.wrap h1 {
+  float: right;
+  margin: 10px 0 0;
+  background: url("logo-davivienda-footer.png") no-repeat center center;
+  width: 200px;
+  height: 20px;
+  text-indent: -9999px;
+}
+
+.mensajeHeaderMessage {
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.mensajes-info {
+  padding-left: 2px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.linkEnrolamiento {
+  color: #ffffff;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.linkEnrolamiento:hover {
+  color: #ffffff;
+  font-weight: bold;
+  margin-left: 5px;
+  text-decoration: underline;
+}
+
+
+body.loading {
+  overflow: hidden;
+  cursor: wait;
+}
+
+.buttonDisabled {
+  pointer-events: none;
+  cursor: wait;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(47, 52, 59, .5);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.viewshow {
+  display: block;
+}
+
+/* When the body has the loading class, we turn
+ * the scrollbar off with overflow:hidden 
+*/
+body.loading {
+  overflow: hidden;
+  cursor: wait;
+}
+
+/* Anytime the body has the loading class, our
+ * modal element will be visible 
+*/
+body.loading .modal {
+  display: block;
+}
+
+.textLoader {
+  width: 250px;
+  height: 75px;
+  text-align: center;
+  position: fixed;
+  top: 110px;
+  left: 16px;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 16px;
+  z-index: 10;
+  color: #FFF;
+  font-family: "HelveticaNeueLTStdCn", sans-serif, serif;
+}
+
+.popup-nav {
+  position: relative;
+  width: 553px;
+  height: 375px;
+}
+
+.cerrar-pop-nav {
+  background: rgba(255, 255, 255, 0.0);
+  /*Borrar el color de background*/
+  position: absolute;
+  top: 13px;
+  right: 29px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.oculto {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.tipo-documento,
+.numero-documento {
+  margin-top: 0px;
+}
+
+
+
+/**CSS Responsive CCV**/
+body div.loginp div.wrap div.form div.row div.olvidoClaveResponsive div.link ul {
+  list-style-type: none;
+}
+
+body div.loginp div.wrap div.form div.row div.olvidoClaveResponsive div.link ul li {
+  margin: 18px 40px 5px 0;
+}
+
+
+body div.loginp div.wrap div.form div.row div.olvidoClaveResponsive div.link ul li a:hover {
+  text-decoration: underline;
+}
+
+body div.loginp div.wrap div.form div.row div.olvidoClaveResponsive div.link ul li a {
+  color: #ffffff;
+  font-size: 14px;
+
+}
+
+
+.errorXImage {
+  background: url("logo-davivienda.svg") no-repeat;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  float: right;
+  color: #FFFFFF;
+  margin: -6px -10px 0 22px;
+
+}
+
+
+.headTitleModal {
+  display: inline-block;
+  font-family: "HelveticaNeueLTStdBdCn", serif;
+  font-size: 30px;
+  color: #d51e25;
+  margin-left: 40px;
+  margin-top: 54px;
+  margin-bottom: 5px;
+
+}
+
+.headEndDetailModal {
+  display: inline-block;
+  font-family: "HelveticaNeueLTStdCn", serif;
+  font-size: 18px;
+  color: #6d6e72;
+  font-weight: light;
+  margin-top: 13px;
+  margin-left: 40px;
+  margin-right: 10px;
+}
+
+.head-iconError {
+  margin: 68px -22px 0 22px;
+  width: 120px;
+  float: left;
+}
+
+.p_modal {
+  display: table-row !important;
+}
+
+.horizontal-flex {
+  display: flex;
+  justify-content: center;
+}
